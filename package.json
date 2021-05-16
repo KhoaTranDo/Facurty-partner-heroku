@@ -33,7 +33,7 @@
     "client": "cd client && npm start",
     "build":"cd client && npm run build",
     "install-client":"cd client && npm install",
-    "heroky-postbuild":"npm run install-client && npm run build",
+    "heroku-postbuild":"npm run install-client && npm run build",
     "dev": "concurrently -n 'server,client' \"nodemon server.js\" \"npm run client\""
   },
   "repository": {
