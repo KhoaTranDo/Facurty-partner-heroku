@@ -1,6 +1,4 @@
 import { Component } from "react";
-import { asBlob } from "html-docx-js-typescript";
-import { saveAs } from "file-saver";
 import Exportdocx from "../Printdocx/Exportdocx";
 import axios from "axios";
 class Areaprint extends Component {
