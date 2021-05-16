@@ -6,12 +6,12 @@ const multer = require("multer");
 var passport = require('passport')
 const User = require("../models/account");
 const ExamController = require("../controllers/exam");
-
+const path =require('path')
 const uuid = require("uuid").v4;
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "public");
+    cb(null, path.join(process.cwd(), './public/'));
   },
   filename: (req, file, cb) => {
     const { originalname } = file;
