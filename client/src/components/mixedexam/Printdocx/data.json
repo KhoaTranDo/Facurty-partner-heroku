@@ -1,0 +1,469 @@
+{
+    "title":"Bài kiểm tra 15 phút môn Tin Ứng Dụng",
+    "time":"Thời gian 15 phút",
+    "slug": "req.file.filename",
+    "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIQAAACECAYAAABRRIOnAAAAAklEQVR4AewaftIAAANqSURBVO3BMW7sWBAEwawG73/lXBlrtPUAghxJX6iI+IWq/w1Vy1C1DFXLULUMVctQtQxVy1C1DFXLULUMVctQtQxVy1C1DFXLxUNJ+E4qJ0nYVO5IwqayJWFTOUnCd1J5YqhahqplqFouXqbypiTcoXJHEk6ScJKETeVE5U1JeNNQtQxVy1C1XHxYEu5QuSMJn6SyJeFNSbhD5ZOGqmWoWoaq5eKPUTlJwonKloQTlb9kqFqGqmWoWi7+mCTcoXKicpKETeVfNlQtQ9UyVC0XH6byk1S2JGxJ2FROkvAmld9kqFqGqmWoWi5eloSfpLIlYVPZknCShE1lS8IdSfjNhqplqFqGquXiIZXfTGVLwhNJuEPlXzJULUPVMlQt8QsPJGFT2ZLwJpWTJNyh8klJeJPKJw1Vy1C1DFXLxcuScIfKHUnYVE5UtiScJOFEZUvCprKpbEnYVLYkbCpbEjaVNw1Vy1C1DFXLxTdTOUnCicpPSsJJEk5UtiRsKnckYVN5YqhahqplqFoufhmVO5Jwh8odKlsSNpU7knCShE3lOw1Vy1C1DFXLxUMqWxKeSMKJyonKHUnYVLYk3JGEE5UtCSdJ+E5D1TJULUPVEr/wQBI+SeWOJGwqn5SETeVNSdhUPmmoWoaqZaha4hceSMKm8kQS7lA5ScIdKidJ2FTuSMKmsiXhCZUnhqplqFqGquXil1E5ScIdKlsSNpWTJGwqWxLepPKThqplqFqGquXiw5KwqdyRhE1lS8Km8iaVT0rCHSpbEjaVJ4aqZahahqolfuEfloQ7VLYkvEnljiRsKidJ2FTeNFQtQ9UyVC0XDyXhO6lsKlsS7lDZknCisiXhJAmbykkS7kjCpvLEULUMVctQtVy8TOVNSThJwqayJeEkCScqT6jcoXKShE8aqpahahmqlosPS8IdKm9SuUNlS8IdSXgiCScqWxLeNFQtQ9UyVC0Xf0wSTlQ2lROVO5JworIl4Y4kfNJQtQxVy1C1XPwxKlsStiScqDyhcpKETeWJJLxpqFqGqmWoWi4+TOWTVLYkbCpbEjaVkyQ8obKp/GZD1TJULUPVcvGyJHynJGwqb1J5Ign/kqFqGaqWoWqJX6j631C1DFXLULUMVctQtQxVy1C1DFXLULUMVctQtQxVy1C1DFXLULX8B/lmaSGuDDKdAAAAAElFTkSuQmCC",
+    "rawquestion": [
+        {
+            "Question": " The circle is the ...............symbol.xin chào",
+            "Answer": [
+                " Decision ",
+                " Stop",
+                " Start",
+                " Connector"
+            ],
+            "Trueanswer": [
+                " Start"
+            ],
+            "image": [
+                "image1.jgeg",
+                "image1.jgeg"
+            ]
+        },
+        {
+            "Question": " ............looks like a rounded rectangle.bạn khoẻ không",
+            "Answer": [
+                " The ordinary rectangle ",
+                " The ellipse",
+                " The rectangle",
+                " The parallelogram"
+            ],
+            "Trueanswer": [
+                " The ellipse"
+            ],
+            "image": [
+                "image2.jgeg"
+            ]
+        },
+        {
+            "Question": " .......Often it contains comparison function such as less than or greater than.",
+            "Answer": [
+                " Process symbol",
+                " Output symbol",
+                " Stop symbol",
+                " Decision symbol"
+            ],
+            "Trueanswer": [
+                " Process symbol"
+            ],
+            "image": []
+        },
+        {
+            "Question": " I saw that movie ............ I was a child.",
+            "Answer": [
+                " until",
+                " when",
+                " after",
+                " before"
+            ],
+            "Trueanswer": [
+                " when"
+            ],
+            "image": []
+        },
+        {
+            "Question": " You don’t need ............... when you draw a rectangle",
+            "Answer": [
+                " shift ",
+                " Alt",
+                " Ctrl ",
+                " all of them"
+            ],
+            "Trueanswer": [
+                " all of them"
+            ],
+            "image": []
+        },
+        {
+            "Question": " ...........about size of a small typewriter.",
+            "Answer": [
+                " handheld ",
+                " notebook",
+                " laptop",
+                " subnotebook"
+            ],
+            "Trueanswer": [
+                " notebook"
+            ],
+            "image": []
+        },
+        {
+            "Question": " A .......... can fit into a jacket pocket.x",
+            "Answer": [
+                " handheld",
+                " notebook",
+                " laptop",
+                " subnotebook"
+            ],
+            "Trueanswer": [
+                " handheld"
+            ],
+            "image": []
+        },
+        {
+            "Question": " What should he buy if he wants a computer for writing letter and to keep staff records and to keep a diary of appointments.",
+            "Answer": [
+                " A minicomputer",
+                " A PC",
+                " A mainframe",
+                "D  supercomputer"
+            ],
+            "Trueanswer": [
+                " A PC"
+            ],
+            "image": [
+                "image3.jgeg"
+            ]
+        }
+    ],
+    "exammixed": {
+        "0": {
+            "idexam": 98,
+            "questions": [
+                {
+                    "Question": " I saw that movie ............ I was a child.",
+                    "Answer": [
+                        " until",
+                        " when",
+                        " after",
+                        " before"
+                    ],
+                    "Trueanswer": [
+                        " when"
+                    ],
+                    "image": []
+                },
+                {
+                    "Question": " You don’t need ............... when you draw a rectangle",
+                    "Answer": [
+                        " shift ",
+                        " Alt",
+                        " Ctrl ",
+                        " all of them"
+                    ],
+                    "Trueanswer": [
+                        " all of them"
+                    ],
+                    "image": []
+                },
+                {
+                    "Question": " A .......... can fit into a jacket pocket.x",
+                    "Answer": [
+                        " handheld",
+                        " notebook",
+                        " laptop",
+                        " subnotebook"
+                    ],
+                    "Trueanswer": [
+                        " handheld"
+                    ],
+                    "image": []
+                },
+                {
+                    "Question": " The circle is the ...............symbol.xin chào",
+                    "Answer": [
+                        " Decision ",
+                        " Stop",
+                        " Start",
+                        " Connector"
+                    ],
+                    "Trueanswer": [
+                        " Start"
+                    ],
+                    "image": [
+                        "image1.jgeg",
+                        "image1.jgeg"
+                    ]
+                },
+                {
+                    "Question": " What should he buy if he wants a computer for writing letter and to keep staff records and to keep a diary of appointments.",
+                    "Answer": [
+                        " A minicomputer",
+                        " A PC",
+                        " A mainframe",
+                        "D  supercomputer"
+                    ],
+                    "Trueanswer": [
+                        " A PC"
+                    ],
+                    "image": [
+                        "image3.jgeg"
+                    ]
+                },
+                {
+                    "Question": " ...........about size of a small typewriter.",
+                    "Answer": [
+                        " handheld ",
+                        " notebook",
+                        " laptop",
+                        " subnotebook"
+                    ],
+                    "Trueanswer": [
+                        " notebook"
+                    ],
+                    "image": []
+                },
+                {
+                    "Question": " ............looks like a rounded rectangle.bạn khoẻ không",
+                    "Answer": [
+                        " The ordinary rectangle ",
+                        " The ellipse",
+                        " The rectangle",
+                        " The parallelogram"
+                    ],
+                    "Trueanswer": [
+                        " The ellipse"
+                    ],
+                    "image": [
+                        "image2.jgeg"
+                    ]
+                },
+                {
+                    "Question": " .......Often it contains comparison function such as less than or greater than.",
+                    "Answer": [
+                        " Process symbol",
+                        " Output symbol",
+                        " Stop symbol",
+                        " Decision symbol"
+                    ],
+                    "Trueanswer": [
+                        " Process symbol"
+                    ],
+                    "image": []
+                }
+            ]
+        },
+        "1": {
+            "idexam": 151,
+            "questions": [
+                {
+                    "Question": " What should he buy if he wants a computer for writing letter and to keep staff records and to keep a diary of appointments.",
+                    "Answer": [
+                        " A minicomputer",
+                        " A PC",
+                        " A mainframe",
+                        "D  supercomputer"
+                    ],
+                    "Trueanswer": [
+                        " A PC"
+                    ],
+                    "image": [
+                        "image3.jgeg"
+                    ]
+                },
+                {
+                    "Question": " I saw that movie ............ I was a child.",
+                    "Answer": [
+                        " until",
+                        " when",
+                        " after",
+                        " before"
+                    ],
+                    "Trueanswer": [
+                        " when"
+                    ],
+                    "image": []
+                },
+                {
+                    "Question": " A .......... can fit into a jacket pocket.x",
+                    "Answer": [
+                        " handheld",
+                        " notebook",
+                        " laptop",
+                        " subnotebook"
+                    ],
+                    "Trueanswer": [
+                        " handheld"
+                    ],
+                    "image": []
+                },
+                {
+                    "Question": " ...........about size of a small typewriter.",
+                    "Answer": [
+                        " handheld ",
+                        " notebook",
+                        " laptop",
+                        " subnotebook"
+                    ],
+                    "Trueanswer": [
+                        " notebook"
+                    ],
+                    "image": []
+                },
+                {
+                    "Question": " The circle is the ...............symbol.xin chào",
+                    "Answer": [
+                        " Decision ",
+                        " Stop",
+                        " Start",
+                        " Connector"
+                    ],
+                    "Trueanswer": [
+                        " Start"
+                    ],
+                    "image": [
+                        "image1.jgeg",
+                        "image1.jgeg"
+                    ]
+                },
+                {
+                    "Question": " .......Often it contains comparison function such as less than or greater than.",
+                    "Answer": [
+                        " Process symbol",
+                        " Output symbol",
+                        " Stop symbol",
+                        " Decision symbol"
+                    ],
+                    "Trueanswer": [
+                        " Process symbol"
+                    ],
+                    "image": []
+                },
+                {
+                    "Question": " ............looks like a rounded rectangle.bạn khoẻ không",
+                    "Answer": [
+                        " The ordinary rectangle ",
+                        " The ellipse",
+                        " The rectangle",
+                        " The parallelogram"
+                    ],
+                    "Trueanswer": [
+                        " The ellipse"
+                    ],
+                    "image": [
+                        "image2.jgeg"
+                    ]
+                },
+                {
+                    "Question": " You don’t need ............... when you draw a rectangle",
+                    "Answer": [
+                        " shift ",
+                        " Alt",
+                        " Ctrl ",
+                        " all of them"
+                    ],
+                    "Trueanswer": [
+                        " all of them"
+                    ],
+                    "image": []
+                }
+            ]
+        },
+        "2": {
+            "idexam": 136,
+            "questions": [
+                {
+                    "Question": " ............looks like a rounded rectangle.bạn khoẻ không",
+                    "Answer": [
+                        " The ordinary rectangle ",
+                        " The ellipse",
+                        " The rectangle",
+                        " The parallelogram"
+                    ],
+                    "Trueanswer": [
+                        " The ellipse"
+                    ],
+                    "image": [
+                        "image2.jgeg"
+                    ]
+                },
+                {
+                    "Question": " ...........about size of a small typewriter.",
+                    "Answer": [
+                        " handheld ",
+                        " notebook",
+                        " laptop",
+                        " subnotebook"
+                    ],
+                    "Trueanswer": [
+                        " notebook"
+                    ],
+                    "image": []
+                },
+                {
+                    "Question": " .......Often it contains comparison function such as less than or greater than.",
+                    "Answer": [
+                        " Process symbol",
+                        " Output symbol",
+                        " Stop symbol",
+                        " Decision symbol"
+                    ],
+                    "Trueanswer": [
+                        " Process symbol"
+                    ],
+                    "image": []
+                },
+                {
+                    "Question": " I saw that movie ............ I was a child.",
+                    "Answer": [
+                        " until",
+                        " when",
+                        " after",
+                        " before"
+                    ],
+                    "Trueanswer": [
+                        " when"
+                    ],
+                    "image": []
+                },
+                {
+                    "Question": " The circle is the ...............symbol.xin chào",
+                    "Answer": [
+                        " Decision ",
+                        " Stop",
+                        " Start",
+                        " Connector"
+                    ],
+                    "Trueanswer": [
+                        " Start"
+                    ],
+                    "image": [
+                        "image1.jgeg",
+                        "image1.jgeg"
+                    ]
+                },
+                {
+                    "Question": " What should he buy if he wants a computer for writing letter and to keep staff records and to keep a diary of appointments.",
+                    "Answer": [
+                        " A minicomputer",
+                        " A PC",
+                        " A mainframe",
+                        "D  supercomputer"
+                    ],
+                    "Trueanswer": [
+                        " A PC"
+                    ],
+                    "image": [
+                        "image3.jgeg"
+                    ]
+                },
+                {
+                    "Question": " A .......... can fit into a jacket pocket.x",
+                    "Answer": [
+                        " handheld",
+                        " notebook",
+                        " laptop",
+                        " subnotebook"
+                    ],
+                    "Trueanswer": [
+                        " handheld"
+                    ],
+                    "image": []
+                },
+                {
+                    "Question": " You don’t need ............... when you draw a rectangle",
+                    "Answer": [
+                        " shift ",
+                        " Alt",
+                        " Ctrl ",
+                        " all of them"
+                    ],
+                    "Trueanswer": [
+                        " all of them"
+                    ],
+                    "image": []
+                }
+            ]
+        }
+    }
+}

@@ -11,9 +11,7 @@ connectToDatabase();
 // Goi Router
 const router = require("./routers");
 
-if(process.env.MONGODB_CONNECTION_STRING==='production'){
-  app.use(express.static('client/build'))
-}
+
 app.use(express.urlencoded({extended:false}))
 app.use(express.json())
 app.use(cors())
@@ -22,7 +20,9 @@ app.get("/", (req, res) => {
     res.send("Hello World!");
   });
   router(app);
-
+  if(process.env.MONGODB_CONNECTION_STRING==='production'){
+    app.use(express.static('client/build'))
+  }
 
 const PORT = process.env.PORT ||6001;
 

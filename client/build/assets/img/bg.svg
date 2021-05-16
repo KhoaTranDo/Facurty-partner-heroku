@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1920 450" style="enable-background:new 0 0 1920 450;" xml:space="preserve">
+<style type="text/css">
+	.st0{clip-path:url(#SVGID_2_);}
+	.st1{fill:#2496ED;}
+	.st2{filter:url(#Adobe_OpacityMaskFilter);}
+	.st3{fill:#FFFFFF;}
+	.st4{opacity:0.5;mask:url(#mask-2_1_);}
+	.st5{fill:#8F9DAA;}
+	.st6{fill:#F1F1F3;}
+	.st7{fill:#ABBCCC;}
+	.st8{filter:url(#Adobe_OpacityMaskFilter_1_);}
+	.st9{opacity:0.86;mask:url(#mask-2_2_);fill:url(#overlay_1_);enable-background:new    ;}
+	.st10{opacity:0.86;fill:#2496ED;enable-background:new    ;}
+</style>
+<title>Slice 1</title>
+<desc>Created with Sketch.</desc>
+<g>
+	<defs>
+		<rect id="SVGID_1_" x="0" width="1920" height="450"/>
+	</defs>
+	<clipPath id="SVGID_2_">
+		<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+	</clipPath>
+	<g id="Page-1" class="st0">
+		<g id="background">
+			<g id="pattern">
+				<g id="Mask">
+					<path id="path-1_1_" class="st1" d="M967.2,747.1L1920,450V4.1H-4L0,450l950.4,297.1C955.6,750.1,962,750.1,967.2,747.1z"/>
+				</g>
+				<defs>
+					<filter id="Adobe_OpacityMaskFilter" filterUnits="userSpaceOnUse" x="-287" y="-427.9" width="2270.5" height="1499.8">
+						<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+					</filter>
+				</defs>
+				<mask maskUnits="userSpaceOnUse" x="-287" y="-427.9" width="2270.5" height="1499.8" id="mask-2_1_">
+					<g class="st2">
+						<path id="path-1_2_" class="st3" d="M977.2,877.8l971.9-562.7V-24.7H-15.1v339.9l972,562.7
+							C963.1,881.5,970.9,881.5,977.2,877.8z"/>
+					</g>
+				</mask>
+				<g class="st4">
+					<g transform="translate(-267.000000, -396.000000)">
+						<polygon id="Fill-1" class="st5" points="1584.8,584.8 1185.3,354.1 1185.3,354 516.7,740.6 516.6,1049.4 783.6,895.1 
+							783.6,695.3 783.6,694.9 1184.7,463.2 1623.3,716.3 2250.6,354 2250.6,200.2 						"/>
+						<polygon id="Fill-4" class="st5" points="1583.9,431.3 1851.4,277.5 1851.4,123.9 1450.3,354.5 						"/>
+						<polygon id="Fill-5" class="st6" points="1050.1,123.2 1050.1,123.3 1316.8,277.1 1183.5,354.1 1183.5,354.2 1583.7,585.1 
+							2250.6,200.2 2250.6,200.1 2117.2,123.1 1850.4,277.1 1583.7,431 1450.4,354.1 1850.4,123.3 1850.4,123.1 1717,46.2 
+							1450.3,200.1 1450.2,200.1 1316.9,123.1 1316.9,123.2 1316.9,123.1 1316.9,123.1 1450.3,46.2 1450.3,46.1 1316.9,-30.9 						
+							"/>
+						<polygon id="Fill-6" class="st7" points="782.3,430.3 916.3,353.1 916.7,352.8 782.8,275.6 782.8,275.6 						"/>
+						<path id="Fill-7" class="st1" d="M1183.5,620.7l-128.3,74.3L1183.5,620.7z"/>
+						<polygon id="Fill-8" class="st5" points="783.4,277.6 516.6,432 516.6,586.1 783.4,431.4 						"/>
+						<polygon id="Fill-9" class="st7" points="516.3,584.9 516.6,585.1 516.6,431.3 114.4,200.2 114.4,354.2 						"/>
+						<polygon id="Fill-12" class="st7" points="-20,739.9 516.6,1049.4 516.6,740.5 -19.7,431.3 						"/>
+						<path id="Fill-13" class="st6" d="M515.3-31.9L113.8,200.1v0.3v0l401.4,232.1l267.5-154.6l0.6-0.3l133.3,77.1l-0.4,0.2
+							L515.3,587l-0.3-0.2L113.8,355.2L-20,432.3l535.4,309.6l669.1-387.3l0.1,0l-133.2-76.9L515.3-31.9z M386.8,200.3l128.4-74.3
+							l128.4,74.3l-128.4,74.3L386.8,200.3z"/>
+						<polygon id="Fill-14" class="st5" points="1183.5,1236.7 1316.7,1159.2 1316.7,1004.7 1450.3,927.3 1450.2,927.3 
+							1450.2,773.5 1183.5,927.9 						"/>
+						<polygon id="Fill-15" class="st5" points="1451,1081.7 1451,1236.1 1316.9,1313.4 1316.9,1467.9 1585.2,1313.3 1585.2,1158.9 
+							1585.2,1158.8 1853.5,1004.3 1853.5,849.8 						"/>
+						<polygon id="Fill-16" class="st7" points="1450.4,926.2 1584.7,848.7 1450.9,771.4 1450.3,771.8 1450.3,926.1 						"/>
+						<polygon id="Fill-17" class="st7" points="1316.9,1158.6 1451.3,1235.7 1451.3,1081.7 1316.9,1004.6 						"/>
+						<path id="Fill-18" class="st7" d="M782.3,894.1v263.5l535.6,309.3v-154.6l-133.7-77.2V926L782.3,694V894.1z M919,920.9
+							l136.5,78.8l-39.8,23.1l39.9-23.1v0.1l0.1,0.1l-0.1,0.1l0.2,157.6l-0.1-0.1l-136.6-78.6l0.1-0.1l70.6-40.9l-70.8,40.8V920.9z"
+							/>
+						<polygon id="Fill-19" class="st1" points="1055.2,1000.6 1055.3,1000.5 1055.2,1000.5 						"/>
+						<polygon id="Fill-20" class="st5" points="1054.2,998.4 917.8,920.1 917.8,1076.9 988.5,1036.3 1014.4,1021.4 						"/>
+						<polygon id="Fill-21" class="st6" points="1054,1000.6 1054,1000.5 1014.2,1023.6 988.3,1038.7 917.8,1079.6 917.8,1079.6 
+							1054.1,1158.3 1054.2,1158.3 1054,1000.7 						"/>
+						<polygon id="Fill-22" class="st6" points="1316.7,1313.1 1450.3,1235.7 1316.7,1158.3 1183.5,1235.9 						"/>
+						<path id="Fill-23" class="st6" d="M1183.2,768l-128.3-74.2l128.3-74.2l128.3,74.2L1183.2,768z M782.3,693.7v0.3l400.8,231.8
+							l267.1-154.5l0.6-0.3l133.1,77l-267.4,154.6l133.7,77.3l401.2-232.1l-229.9-132.8l-438.4-253.2L782.3,693.7z"/>
+						<polygon id="Fill-24" class="st5" points="1055.2,695.1 1183.5,769.4 1183.5,620.7 						"/>
+						<polygon id="Fill-25" class="st7" points="1183.5,769.4 1183.5,769.4 1311.8,695.1 1183.5,620.7 						"/>
+					</g>
+				</g>
+				<defs>
+					<filter id="Adobe_OpacityMaskFilter_1_" filterUnits="userSpaceOnUse" x="234.3" y="-24.7" width="1964.2" height="905.3">
+						<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+					</filter>
+				</defs>
+				<mask maskUnits="userSpaceOnUse" x="234.3" y="-24.7" width="1964.2" height="905.3" id="mask-2_2_">
+					<g class="st8">
+						<path id="path-1_3_" class="st3" d="M977.2,877.8l971.9-562.7V-24.7H-15.1v339.9l972,562.7
+							C963.1,881.5,970.9,881.5,977.2,877.8z"/>
+					</g>
+				</mask>
+				
+					<linearGradient id="overlay_1_" gradientUnits="userSpaceOnUse" x1="359.8696" y1="539.0019" x2="360.8878" y2="538.1547" gradientTransform="matrix(1929.1631 0 0 -889.1295 -693893.6875 479151.8125)">
+					<stop  offset="0" style="stop-color:#FFFFFF;stop-opacity:0"/>
+					<stop  offset="0.5071" style="stop-color:#FFFFFF;stop-opacity:0.5412"/>
+					<stop  offset="1" style="stop-color:#FFFFFF"/>
+				</linearGradient>
+				<path id="overlay" class="st9" d="M1226.7,877.8l971.9-562.7V-24.7H234.3v339.9l972,562.7
+					C1212.6,881.5,1220.4,881.5,1226.7,877.8z"/>
+			</g>
+			<path id="overlay_2_" class="st10" d="M981.4,1045.8l1159.4-8.2V-30.9H-202.5v1076.7"/>
+		</g>
+	</g>
+</g>
+</svg>
