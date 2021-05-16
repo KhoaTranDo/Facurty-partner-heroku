@@ -1,0 +1,7 @@
+docx
+docx2txt
+zipfile
+json
+os
+sys
+xml.etree.ElementTree
