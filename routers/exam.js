@@ -9,14 +9,21 @@ const ExamController = require("../controllers/exam");
 const path =require('path')
 const uuid = require("uuid").v4;
 
+const { DH_CHECK_P_NOT_PRIME } = require("constants");
+
+
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, path.join(process.cwd(), './public/'));
   },
   filename: (req, file, cb) => {
     const { originalname } = file;
-    cb(null, `${uuid()}-${originalname}`);
+    const uniquename=`${uuid()}-${originalname}`
+    cb(null, uniquename);
+ 
   },
+  
 });
 const upload = multer({ storage });
 
@@ -29,5 +36,5 @@ router.get("/import/:slug", ExamController.importSlug);
 router.put("/import/edit/:slug", ExamController.editexam);
 router.put("/infor/:id/edit", ExamController.infor);
 router.post("/scan", ExamController.getqr);
-router.get("/", ExamController.index);
+
 module.exports = router;

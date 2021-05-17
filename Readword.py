@@ -237,21 +237,21 @@ for a in all_text:
     # print(a.text)
 print(json.dumps(exams))
 
-import docx2txt as d2t
+# import docx2txt as d2t
 
 
-def extract_images_from_docx(path_to_file, images_folder, get_text=False):
-    text = d2t.process(path_to_file, images_folder)
-    if (get_text):
-        return text
+# def extract_images_from_docx(path_to_file, images_folder, get_text=False):
+#     text = d2t.process(path_to_file, images_folder)
+#     if (get_text):
+#         return text
 
-path_to_file = 'public/'+str(sys.argv[1])
-if not os.path.exists('public/images/'+str(sys.argv[1])):
-     os.makedirs('public/images/'+str(sys.argv[1])+'/')
-     images_folder ='public/images/'+str(sys.argv[1]+'/')
-else:
-     images_folder ='public/images/'+str(sys.argv[1]+'/')
+# path_to_file = 'public/'+str(sys.argv[1])
+# if not os.path.exists('public/images/'+str(sys.argv[1])):
+#      os.makedirs('public/images/'+str(sys.argv[1])+'/')
+#      images_folder ='public/images/'+str(sys.argv[1]+'/')
+# else:
+#      images_folder ='public/images/'+str(sys.argv[1]+'/')
 
-extract_images_from_docx(path_to_file, images_folder)
+# extract_images_from_docx(path_to_file, images_folder)
 # extract_images_from_docx(path_to_file, images_folder, get_text=True)
 

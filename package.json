@@ -11,7 +11,7 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "child_process": "^1.0.2",
-    "cloudinary": "^1.23.0",
+    "cloudinary": "^1.25.1",
     "config": "^3.3.2",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
@@ -31,9 +31,9 @@
   "scripts": {
     "start": "node server.js",
     "client": "cd client && npm start",
-    "build":"cd client && npm run build",
-    "install-client":"cd client && npm install",
-    "heroku-postbuild":"NPM_CONFIG_PRODUCTION=false npm run install-client && npm run build",
+    "build": "cd client && npm run build",
+    "install-client": "cd client && npm install",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm run install-client && npm run build",
     "dev": "concurrently -n 'server,client' \"nodemon server.js\" \"npm run client\""
   },
   "repository": {

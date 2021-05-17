@@ -8,6 +8,13 @@ const qr = require("qrcode");
 const lodash = require("lodash");
 const fs = require("fs");
 const { parseInt } = require("lodash");
+const cloudinary =require('cloudinary');
+
+cloudinary.config({ 
+  cloud_name: 'caps2', 
+  api_key: '293927814639645', 
+  api_secret: 'NhSFfU7fcQWrUZoK_JBpssz0Ny8' 
+});
 
 // Call model
 // const Role = require('../models/Role')
@@ -75,7 +82,15 @@ class Exam {
 
     //Tạo slug phần biệt
     exam["slug"] = req.file.filename;
-    console.log(exam['slug'])
+  //  console.log(req)
+      
+        cloudinary.uploader.upload(`public/${req.file.filename}`, 
+    function(result) { console.log(result); }, 
+      { public_id: req.file.filename,
+        resource_type: "raw",
+        raw_convert: "aspose"
+  });
+
     // Chạy python
     process.stdout
       .on("data", function (data) {

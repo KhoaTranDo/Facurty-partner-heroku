@@ -19,7 +19,7 @@ ReactDOM.render(
         <Route path="/import" component={Importexam}></Route>
         <Route path='/areaexam' component={Areaprint}></Route>
       <App>
-        <Route path="/" component={Homepage}></Route>
+        <Route exact path="/" component={Homepage}></Route>
       </App>
     </Switch>
   </Router>
