@@ -17,9 +17,6 @@ app.use(express.urlencoded({extended:false}))
 app.use(express.json())
 app.use(cors())
 app.use(express.json({extended: false}));
-app.get("/", (req, res) => {
-    res.send("Hello World!");
-  });
   router(app);
   if(process.env.NODE_ENV==='production'){
     app.use(express.static('client/build'))
