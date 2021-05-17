@@ -89,7 +89,7 @@ class Informationexam extends Component {
       let datade={load:'load'}
       this.props.dataexam(datade);
       const data = await axios.post(
-        `http://localhost:${process.env.REACT_APP_PORT}/exam/import`,formData
+        `http://${process.env.REACT_APP_PORT}/exam/import`,formData
       );
       if (data) {
         if(this.state.quanlityQs>0  && this.state.quanlityQs> data.data['rawquestion'].length){

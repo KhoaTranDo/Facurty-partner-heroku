@@ -14,7 +14,7 @@ class Areaprint extends Component {
     let { dataraw } = await this.props.location.state;
     axios
       .get(
-        `http://localhost:${process.env.REACT_APP_PORT}/exam/${dataraw["slug"]}`
+        `http://${process.env.REACT_APP_PORT}/exam/${dataraw["slug"]}`
       )
       .then((res) => {
         this.setState({

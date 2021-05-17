@@ -84,12 +84,12 @@ class Exam {
     exam["slug"] = req.file.filename;
   //  console.log(req)
       
-        cloudinary.uploader.upload(`public/${req.file.filename}`, 
-    function(result) { console.log(result); }, 
-      { public_id: req.file.filename,
-        resource_type: "raw",
-        raw_convert: "aspose"
-  });
+  //       cloudinary.uploader.upload(`public/${req.file.filename}`, 
+  //   function(result) { console.log(result); }, 
+  //     { public_id: req.file.filename,
+  //       resource_type: "raw",
+  //       raw_convert: "aspose"
+  // });
 
     // Chạy python
     process.stdout
