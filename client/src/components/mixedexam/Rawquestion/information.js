@@ -89,7 +89,7 @@ class Informationexam extends Component {
       let datade={load:'load'}
       this.props.dataexam(datade);
       const data = await axios.post(
-        `${process.env.REACT_APP_PORT}/exam/import`,formData
+        `/exam/import`,formData
       );
       if (data) {
         if(this.state.quanlityQs>0  && this.state.quanlityQs> data.data['rawquestion'].length){
@@ -196,7 +196,7 @@ class Informationexam extends Component {
             password:this.state.password
           }
            let getdata= await axios.post(
-          `http://localhost:${process.env.REACT_APP_PORT}/exam/import/mixquestion`,dataSend );
+          `/exam/import/mixquestion`,dataSend );
           if (getdata) {
            this.setState({ data: getdata.data });
            this.props.dataexam(getdata.data);

@@ -9,7 +9,7 @@ class Listexam extends Component {
 
   componentDidMount(){
     axios
-    .get(`${process.env.REACT_APP_PORT}/exam/${this.props.rawquestion["slug"]}`)
+    .get(`/exam/${this.props.rawquestion["slug"]}`)
     .then((res) => {
       console.log(res.data);
     })
