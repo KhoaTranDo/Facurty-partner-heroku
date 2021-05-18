@@ -86,6 +86,8 @@ class Informationexam extends Component {
       "avatar",
       selectedFile
     );
+    
+    
       let datade={load:'load'}
       this.props.dataexam(datade);
       const data = await axios.post(

@@ -1,3 +1,4 @@
+require('dotenv').config();
 const jwt = require("jsonwebtoken");
 const bcryptjs = require("bcryptjs");
 const { validationResult, check } = require("express-validator");
@@ -9,6 +10,7 @@ const lodash = require("lodash");
 const fs = require("fs");
 const { parseInt } = require("lodash");
 const cloudinary =require('cloudinary');
+var AWS = require("aws-sdk");
 
 cloudinary.config({ 
   cloud_name: 'caps2', 
@@ -60,13 +62,13 @@ class Exam {
   }
   readExam = (req, res) => {
     // Thư viện spawn để chạy python
-    var spawn = require("child_process").spawn;
+  
     // Get questions data from python
     let getRawanswer = "";
     // Exam object
     var exam = {};
     // Lấy ảnh đã mã hoá
-    const url = req.file.filename;
+    const url = req.file.key;
     // Kiểm tra qr rỗng không
     if (url.length === 0) res.send("Empty Data!");
     // Xuất qr code
@@ -76,21 +78,36 @@ class Exam {
     });
     // Lấy file name
     //var tenfile = "de3.docx"; //vd de3.docx
-    var tenfile = req.file.filename;
+    var tenfile = req.file.key;
     //Truyen file vao python để dọc
     var process = spawn("python", ["Readword.py", tenfile]);
 
     //Tạo slug phần biệt
-    exam["slug"] = req.file.filename;
+    exam["slug"] = req.file.key;
   //  console.log(req)
       
-        cloudinary.uploader.upload(`public/${req.file.filename}`, 
-    function(result) { console.log(result); }, 
-      { public_id: req.file.filename,
-        resource_type: "raw",
-        raw_convert: "aspose"
-  });
-
+  //       cloudinary.uploader.upload(`public/${req.file.filename}`, 
+  //   function(result) { console.log(result); }, 
+  //     { public_id: req.file.filename,
+  //       resource_type: "raw",
+  //       raw_convert: "aspose"
+  // });
+  //console.log(process.env.MONGODB_CONNECTION_STRING)
+  // const s3= new AWS.S3({
+  //   accessKeyId: "AKIAYF3ZOGVKOQW5CUAA",
+  //   secretAccessKey: "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"
+  // })
+  // const params={
+  //   Bucket:"farcurtypartner",
+  //   Key:req.file.filename,
+  //   Body:`public/${req.file.filename}`
+  // }
+  // s3.upload(params,(error,data)=>{
+  //   if(error){
+  //     console.log(error)
+  //   }
+  //   console.log(data)
+  // })
     // Chạy python
     process.stdout
       .on("data", function (data) {

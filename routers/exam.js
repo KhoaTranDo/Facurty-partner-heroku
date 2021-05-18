@@ -8,10 +8,31 @@ const User = require("../models/account");
 const ExamController = require("../controllers/exam");
 const path =require('path')
 const uuid = require("uuid").v4;
+var AWS = require("aws-sdk");
+var multerS3 = require('multer-s3')
 
-const { DH_CHECK_P_NOT_PRIME } = require("constants");
+AWS.config.update({
+  accessKeyId: process.env.AWS_SECRET_KEY||"AKIAYF3ZOGVKOQW5CUAA",
+  secretAccessKey: process.env.AWS_ACCESS_KEY||"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",
+  region:"ap-southeast-1"
+})
+var app = express(),
+s3 = new AWS.S3();
 
-
+var upload3 = multer({
+  storage: multerS3({
+    s3: s3,
+    bucket: 'farcurtypartner',
+    metadata: function (req, file, cb) {
+      cb(null, {fieldName: file.originalname});
+    },
+    key: (req, file, cb) => {
+      const { originalname } = file;
+      const uniquename=`${uuid()}-${originalname}`
+      cb(null, uniquename);
+    },
+  })
+})
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -21,7 +42,6 @@ const storage = multer.diskStorage({
     const { originalname } = file;
     const uniquename=`${uuid()}-${originalname}`
     cb(null, uniquename);
- 
   },
   
 });
@@ -30,7 +50,7 @@ const upload = multer({ storage });
 
 router.get("/:id", ExamController.addExam);
 router.get("/import", ExamController.importExam);  
-router.post("/import",upload.single("avatar"), ExamController.readExam);
+router.post("/import",upload3.single("avatar"), ExamController.readExam);
 router.post("/import/mixquestion", ExamController.readmixExam);
 router.get("/import/:slug", ExamController.importSlug);
 router.put("/import/edit/:slug", ExamController.editexam);
