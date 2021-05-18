@@ -112,27 +112,26 @@ class Exam {
       .on("data", function (data) {
         getRawanswer += data.toString();
       })
-      .on("end", () => {
-        exam["rawquestion"] = JSON.parse(getRawanswer);
-
+      .on("end", async () => {
+         exam["rawquestion"] = await JSON.parse(getRawanswer);
         res.send(exam);
       });
     process.stderr.on("data", function (data) {
-      console.log("err data: " + data);
+      res.send("err data: " + data);
     });
-    setTimeout(function () {
-       // Xoa file docx da up len
-    const path = `./public/${req.file.filename}`;
+    // setTimeout(function () {
+    //    // Xoa file docx da up len
+    // const path = `./public/${req.file.filename}`;
 
-    fs.unlink(path, (err) => {
-      if (err) {
-        console.log("khong co file");
-        //console.error(err);
-        return;
-      }
-      //file removed
-    });
-    }, 10000);
+    // fs.unlink(path, (err) => {
+    //   if (err) {
+    //     console.log("khong co file");
+    //     //console.error(err);
+    //     return;
+    //   }
+    //   //file removed
+    // });
+    // }, 10000);
   };
   async readmixExam(req, res) {
     let {
