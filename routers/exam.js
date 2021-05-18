@@ -48,13 +48,13 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 
-router.get("/:id", ExamController.addExam);
-router.get("/import", ExamController.importExam);  
-router.post("/import",upload3.single("avatar"), ExamController.readExam);
 router.post("/import/mixquestion", ExamController.readmixExam);
 router.get("/import/:slug", ExamController.importSlug);
 router.put("/import/edit/:slug", ExamController.editexam);
 router.put("/infor/:id/edit", ExamController.infor);
+router.get("/import", ExamController.importExam);  
+router.post("/import",upload3.single("avatar"), ExamController.readExam);
 router.post("/scan", ExamController.getqr);
+router.get("/:id", ExamController.addExam);
 
 module.exports = router;

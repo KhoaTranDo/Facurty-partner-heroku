@@ -37,7 +37,6 @@ cloudinary.config({
 */
 class Exam {
   async addExam(req, res) {
-    console.log("aaaaa");
     let id = req.params.id;
     // res.json({ id: req.params.id });
     // let a =  Examschema.findOne({ slug: req.params.id });
