@@ -1,4 +1,4 @@
-require('dotenv').config();
+require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const bcryptjs = require("bcryptjs");
 const { validationResult, check } = require("express-validator");
@@ -9,13 +9,13 @@ const qr = require("qrcode");
 const lodash = require("lodash");
 const fs = require("fs");
 const { parseInt } = require("lodash");
-const cloudinary =require('cloudinary');
+const cloudinary = require("cloudinary");
 var AWS = require("aws-sdk");
 
-// cloudinary.config({ 
-//   cloud_name: 'caps2', 
-//   api_key: '293927814639645', 
-//   api_secret: 'NhSFfU7fcQWrUZoK_JBpssz0Ny8' 
+// cloudinary.config({
+//   cloud_name: 'caps2',
+//   api_key: '293927814639645',
+//   api_secret: 'NhSFfU7fcQWrUZoK_JBpssz0Ny8'
 // });
 
 // Call model
@@ -42,7 +42,7 @@ class Exam {
     // let a =  Examschema.findOne({ slug: req.params.id });
     // console.log(a.data);
     try {
-       await Examschema.findOne({ slug: id }, (err, result) => {
+      await Examschema.findOne({ slug: id }, (err, result) => {
         if (err) console.log(err);
         res.json(result);
       }).select("-password"); //khong hien thi password
@@ -61,7 +61,7 @@ class Exam {
   }
   readExam = (req, res) => {
     // Thư viện spawn để chạy python
-  
+
     // Get questions data from python
     let getRawanswer = "";
     // Exam object
@@ -84,10 +84,8 @@ class Exam {
     //Tạo slug phần biệt
     exam["slug"] = req.file.key;
 
-      
-
     // Chạy python
-    try{
+    try {
       process.stdout
       .on("data", function (data) {
         getRawanswer += data.toString();
@@ -97,13 +95,12 @@ class Exam {
         res.send(exam);
       });
     process.stderr.on("data", function (data) {
-      return res.status(404).json(data.toString('utf8'));
+      res.status(404).json(data.toString("utf-8"));
     });
-    
-    }catch{(error)=>{
-      res.status(404).json({error:error}) 
-    }}
- 
+    } catch (error) {
+      return res.status(500).json(error);
+    }
+
    
   };
   async readmixExam(req, res) {
@@ -116,7 +113,6 @@ class Exam {
       mixquestion,
       quanlityQs,
       password,
-      
     } = req.body;
     var arrmixexam = [];
 
@@ -150,7 +146,7 @@ class Exam {
     data1["exammixed"] = arrmixexam;
     //console.log(data1['exammixed'])
     // console.log(arrmixexam)
-    data1["qrimage"]=data["qrimage"]
+    data1["qrimage"] = data["qrimage"];
     data1["title"] = title;
     data1["time"] = timedoexam;
     try {
@@ -159,7 +155,7 @@ class Exam {
       let optionmixed = [mixanswer.toString(), mixquestion.toString()];
       let exammixed = lodash.values(data1["exammixed"]);
       let slug = data1["slug"];
-      let qrimage=data1['qrimage']
+      let qrimage = data1["qrimage"];
       let dataexam = new Examschema({
         titles,
         password,
@@ -168,7 +164,7 @@ class Exam {
         optionmixed,
         exammixed,
         slug,
-        qrimage
+        qrimage,
       });
       let examcheck = await Examschema.findOne({ slug: slug });
       if (examcheck) {
@@ -182,7 +178,7 @@ class Exam {
             timedoexam: timedoexam,
             optionmixed: optionmixed,
             exammixed: exammixed,
-            qrimage:qrimage
+            qrimage: qrimage,
           },
           function (err, result) {
             if (err) {
