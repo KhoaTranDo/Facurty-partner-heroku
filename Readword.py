@@ -141,7 +141,7 @@ for a in all_text:
 
     # print(a.text)
 error=['error']
-print(json.dumps(error))
+print(json.dumps(exams))
 
 # import docx2txt as d2t
 

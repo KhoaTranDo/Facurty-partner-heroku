@@ -12,11 +12,11 @@ const { parseInt } = require("lodash");
 const cloudinary =require('cloudinary');
 var AWS = require("aws-sdk");
 
-cloudinary.config({ 
-  cloud_name: 'caps2', 
-  api_key: '293927814639645', 
-  api_secret: 'NhSFfU7fcQWrUZoK_JBpssz0Ny8' 
-});
+// cloudinary.config({ 
+//   cloud_name: 'caps2', 
+//   api_key: '293927814639645', 
+//   api_secret: 'NhSFfU7fcQWrUZoK_JBpssz0Ny8' 
+// });
 
 // Call model
 // const Role = require('../models/Role')
