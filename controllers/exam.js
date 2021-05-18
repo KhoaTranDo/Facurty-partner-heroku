@@ -84,20 +84,27 @@ class Exam {
     //Tạo slug phần biệt
     exam["slug"] = req.file.key;
 
+      
+
     // Chạy python
-    process.stdout
+    try{
+      process.stdout
       .on("data", function (data) {
         getRawanswer += data.toString();
       })
-      .on("end", async () => {
-         exam["rawquestion"] = await JSON.parse(getRawanswer);
+      .on("end", () => {
+        exam["rawquestion"] = JSON.parse(getRawanswer);
         res.send(exam);
       });
     process.stderr.on("data", function (data) {
-      return res.status(404).json({"err data: ": data});
+      return res.status(404).json(data.toString('utf8'));
     });
-
-
+    
+    }catch{(error)=>{
+      res.status(404).json({error:error}) 
+    }}
+ 
+   
   };
   async readmixExam(req, res) {
     let {
@@ -138,11 +145,11 @@ class Exam {
     // Ma hoa password
     const salt = await bcryptjs.genSalt(10);
     password = await bcryptjs.hash(password, salt);
-
     // so sanh pass word
     // let isPasswordMatch = await bcryptjs.compare(password, user.password);
-
     data1["exammixed"] = arrmixexam;
+    //console.log(data1['exammixed'])
+    // console.log(arrmixexam)
     data1["qrimage"]=data["qrimage"]
     data1["title"] = title;
     data1["time"] = timedoexam;
@@ -179,7 +186,7 @@ class Exam {
           },
           function (err, result) {
             if (err) {
-              res.status(404).json({"err data: ":err});
+              console.log(err);
             } else {
               console.log(result);
             }
