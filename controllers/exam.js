@@ -83,30 +83,7 @@ class Exam {
 
     //Tạo slug phần biệt
     exam["slug"] = req.file.key;
-  //  console.log(req)
-      
-  //       cloudinary.uploader.upload(`public/${req.file.filename}`, 
-  //   function(result) { console.log(result); }, 
-  //     { public_id: req.file.filename,
-  //       resource_type: "raw",
-  //       raw_convert: "aspose"
-  // });
-  //console.log(process.env.MONGODB_CONNECTION_STRING)
-  // const s3= new AWS.S3({
-  //   accessKeyId: "AKIAYF3ZOGVKOQW5CUAA",
-  //   secretAccessKey: "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"
-  // })
-  // const params={
-  //   Bucket:"farcurtypartner",
-  //   Key:req.file.filename,
-  //   Body:`public/${req.file.filename}`
-  // }
-  // s3.upload(params,(error,data)=>{
-  //   if(error){
-  //     console.log(error)
-  //   }
-  //   console.log(data)
-  // })
+
     // Chạy python
     process.stdout
       .on("data", function (data) {
@@ -117,21 +94,10 @@ class Exam {
         res.send(exam);
       });
     process.stderr.on("data", function (data) {
-      res.send("err data: " + data);
+      return res.status(404).json({"err data: ": data});
     });
-    // setTimeout(function () {
-    //    // Xoa file docx da up len
-    // const path = `./public/${req.file.filename}`;
 
-    // fs.unlink(path, (err) => {
-    //   if (err) {
-    //     console.log("khong co file");
-    //     //console.error(err);
-    //     return;
-    //   }
-    //   //file removed
-    // });
-    // }, 10000);
+
   };
   async readmixExam(req, res) {
     let {
@@ -172,11 +138,11 @@ class Exam {
     // Ma hoa password
     const salt = await bcryptjs.genSalt(10);
     password = await bcryptjs.hash(password, salt);
+
     // so sanh pass word
     // let isPasswordMatch = await bcryptjs.compare(password, user.password);
+
     data1["exammixed"] = arrmixexam;
-    //console.log(data1['exammixed'])
-    // console.log(arrmixexam)
     data1["qrimage"]=data["qrimage"]
     data1["title"] = title;
     data1["time"] = timedoexam;
@@ -213,7 +179,7 @@ class Exam {
           },
           function (err, result) {
             if (err) {
-              console.log(err);
+              res.status(404).json({"err data: ":err});
             } else {
               console.log(result);
             }
