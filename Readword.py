@@ -140,7 +140,8 @@ for a in all_text:
             luuanh.append( checkimage[str(hasImage(a))])
 
     # print(a.text)
-print(json.dumps(exams))
+error=['error']
+print(json.dumps(error))
 
 # import docx2txt as d2t
 
