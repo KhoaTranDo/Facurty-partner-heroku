@@ -87,21 +87,25 @@ class Exam {
     // Chạy python
     try {
       process.stdout
-      .on("data", function (data) {
-        getRawanswer += data.toString();
-      })
-      .on("end", () => {
-        exam["rawquestion"] = JSON.parse(getRawanswer);
-        res.send(exam);
+        .on("data", function (data) {
+          getRawanswer += data.toString();
+        })
+        .on("end", () => {
+          if (!getRawanswer) {
+            console.log("khong");
+            return res.status("import file error");
+          } else {
+            exam["rawquestion"] = JSON.parse(getRawanswer);
+            return res.send(exam);
+          }
+        });
+      process.stderr.on("data", function (data) {
+        res.status(404).json(data.toString("utf-8"));
+        return;
       });
-    process.stderr.on("data", function (data) {
-      res.status(404).json(data.toString("utf-8"));
-    });
     } catch (error) {
       return res.status(500).json(error);
     }
-
-   
   };
   async readmixExam(req, res) {
     let {
@@ -144,8 +148,7 @@ class Exam {
     // so sanh pass word
     // let isPasswordMatch = await bcryptjs.compare(password, user.password);
     data1["exammixed"] = arrmixexam;
-    //console.log(data1['exammixed'])
-    // console.log(arrmixexam)
+
     data1["qrimage"] = data["qrimage"];
     data1["title"] = title;
     data1["time"] = timedoexam;
