@@ -92,7 +92,7 @@ class Exam {
         })
         .on("end", () => {
           if (!getRawanswer) {
-            console.log("khong");
+
             return res.status("import file error");
           } else {
             exam["rawquestion"] = JSON.parse(getRawanswer);
@@ -100,8 +100,7 @@ class Exam {
           }
         });
       process.stderr.on("data", function (data) {
-        res.status(404).json(data.toString("utf-8"));
-        return;
+        return res.status(404).json(data.toString("utf-8"));
       });
     } catch (error) {
       return res.status(500).json(error);
