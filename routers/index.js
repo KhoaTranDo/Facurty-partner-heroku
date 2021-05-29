@@ -15,6 +15,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 function route(app) {
+  
   // Chứa các router chính
   // app.use("/account",accountRouter: nhánh con bên trong)
   app.get("/ada", (req, res) => {
@@ -22,6 +23,7 @@ function route(app) {
   });
   app.use("/account",accountRouter);
   app.use("/exam",ExamRouter);
+
 
   // upload.single('avatar') avatar la key cua file
   app.post("/upload/demo", upload.single("avatar"), (req, res) => {

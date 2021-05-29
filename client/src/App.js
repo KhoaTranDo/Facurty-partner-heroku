@@ -1,19 +1,20 @@
 
 import './App.css';
-import Homepage from './components/homepage/homepage'
 import { Component } from 'react';
+import Header from "./components/layout/navbar"
+import Footer from "./components/layout/footer"
 
 class App extends Component {
-  constructor(props){
-    super(props)
-
-  }
   render(){
     return (
-       <>
-       {this.props.children}
-       </>
-    )
+      <>
+      <Header/>
+      <div style={{marginTop:"76px"}}>
+      {this.props.children}
+      </div>
+      <Footer/>
+      </>
+      );
   }
 }
 

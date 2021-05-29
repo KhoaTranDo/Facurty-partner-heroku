@@ -47,11 +47,12 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-
+router.post("/grading",ExamController.gradingexam)
+router.post("/grading/exam",ExamController.gradingtest)
+router.post("/grading/exam/save",ExamController.saveResult)
+router.get("/getdata/:slug", ExamController.importSlug);
 router.post("/import/mixquestion", ExamController.readmixExam);
-router.get("/import/:slug", ExamController.importSlug);
-router.put("/import/edit/:slug", ExamController.editexam);
-router.put("/infor/:id/edit", ExamController.infor);
+router.post("/import/edit/:slug", ExamController.editexam);
 router.get("/import", ExamController.importExam);  
 router.post("/import",upload3.single("avatar"), ExamController.readExam);
 router.post("/scan", ExamController.getqr);

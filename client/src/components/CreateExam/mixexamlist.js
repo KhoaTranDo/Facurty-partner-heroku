@@ -1,23 +1,37 @@
 import { Component } from "react";
-
 import { Link } from "react-router-dom";
 import axios from "axios";
 class Listexam extends Component {
   constructor(props) {
     super(props);
+    this.state=({
+      data:{}
+    })
   }
 
-  componentDidMount(){
+  componentDidMount=()=>{
     axios
-    .get(`/exam/${this.props.rawquestion["slug"]}`)
-    .then((res) => {
-      console.log(res.data);
+    .get(`http://localhost:5000/exam/${this.props.rawquestion["slug"]}`)
+    .then(async (res) => {
+      // Lay data đề đã xử lý
+     await this.setState({data:res.data});
     })
     .catch((err) => console.log(err));
   }
+  recreateexam=(idexam)=>{
+    let dataSend={
+      idexam:idexam,
+    }
+    axios
+    .post(`http://localhost:5000/exam/import/edit/${this.props.rawquestion["slug"]}`,dataSend)
+    .then((res) => {
+      // Lấy data đã cập nhật dữ liệu 
+      this.props.chagedata(res.data)
+    })
+    .catch((err) => console.log(err));
 
+  }
   Rendermixexam = () => {
-  
     let data = this.props.rawquestion["exammixed"];
     if (this.props.rawquestion["exammixed"])
       return Object.keys(data).map((value, index) => {
@@ -40,12 +54,13 @@ class Listexam extends Component {
                 <button
                   type="button"
                   className="btn btn-outline-danger  ml-1 float-xl-right"
+                  onClick={()=>this.recreateexam(data[value]["idexam"])}
                 >
                   Tạo lại
                 </button>
                 <Link
                   to={{
-                    pathname: "/areaexam",
+                    pathname: `/areaexam/${this.props.rawquestion["slug"]}`,
                     state: {
                       dataquestion: data[value],
                       dataraw:this.props.rawquestion,
@@ -112,7 +127,7 @@ class Listexam extends Component {
                     );
                   } else {
                     return (
-                      <div className="form-check">
+                      <div key={value1} className="form-check">
                         {/* <input
                           className="form-check-input"
                           type="radio"
@@ -128,20 +143,7 @@ class Listexam extends Component {
                 })}
               </div>
               <div className="card-footer text-muted">
-                <button
-                  type="button"
-                  style={{ width: "45%" }}
-                  className="btn btn-outline-warning d-inline  ml-1 float-xl-left"
-                >
-                  Sửa
-                </button>
-                <button
-                  type="button"
-                  style={{ width: "45%" }}
-                  className="btn btn-outline-danger  ml-1 float-xl-right "
-                >
-                  Xóa
-                </button>
+                
               </div>
             </div>
           </div>

@@ -12,27 +12,26 @@ let ExamSchema = mongoose.Schema(
     },
     timedoexam: {
       type: String,
-     required: true,
+      required: true,
     },
     rawquestions: {
       type: Array,
       items: {
         type: Object,
         required: [],
-      
-          Question: {
-            type: String,
-          },
-          Answer: {
-            type: Array,
-          },
-          Trueanswer: {
-            type: Array,
-          },
-          image: {
-            type: Array,
-          },
-        
+
+        Question: {
+          type: String,
+        },
+        Answer: {
+          type: Array,
+        },
+        Trueanswer: {
+          type: Array,
+        },
+        image: {
+          type: Array,
+        },
       },
     },
     optionmixed: {
@@ -47,23 +46,57 @@ let ExamSchema = mongoose.Schema(
         type: Object,
         required: [],
         properties: {
-          question: {
+          idexam: {
             type: String,
+            required: true,
           },
-          answer: {
+          listanswer:{
             type: Array,
           },
-          trueanswer: {
+          questions: {
             type: Array,
+            items: {
+              type: Object,
+              required: [],
+              properties: {
+                question: {
+                  type: String,
+                },
+                answer: {
+                  type: Array,
+                },
+                trueanswer: {
+                  type: Array,
+                },
+                image: {
+                  type: Array,
+                },
+              },
+            },
           },
-          image: {
+          grading: {
             type: Array,
+            items: {
+              type: Object,
+              required: [],
+              properties: {
+                namestudent: {
+                  type: String,
+                },
+                truequestion: {
+                  type: String,
+                },
+                image: {
+                  type: String,
+                },
+              },
+            },
           },
         },
       },
     },
-    slug: { type: String},
-    qrimage:{type:String}
+    slug: { type: String },
+    qrimage: { type: String },
   },
   {
     timestamps: true,

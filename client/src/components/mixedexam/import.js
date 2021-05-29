@@ -3,6 +3,7 @@ import Rawquestion from "./Rawquestion/rawquestion";
 import Listexam from "./Exammix/listexammixed";
 import Infor from "./Rawquestion/information";
 import { Link } from "react-router-dom";
+import Header from "../layout/navbar"
 class Import extends Component {
   constructor(props) {
     super(props);
@@ -22,17 +23,11 @@ class Import extends Component {
   };
   render() {
     return (
-      <div>
-        <div className="d-flex flex-column flex-xl-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-          <Link to="/" style={{ textDecoration: "none" }}>
-            <h5
-              className="my-0 mr-md-auto font-weight-normal"
-              style={{ color: "#329DEE", fontSize: 30 }}
-            >
-              Logo's C2se.16
-            </h5>
-          </Link>
+      <>
+      <div className='mb-5 bgni'>
+        <Header />
         </div>
+      <div>
         {/* end-menu */}
         <h3 className="text-center pt-5 mb-5" style={{ fontSize: 50 }}>
           <b>TẠO ĐỀ</b>
@@ -55,6 +50,7 @@ class Import extends Component {
           </div>
         </div>
       </div>
+      </>
     );
   }
 }

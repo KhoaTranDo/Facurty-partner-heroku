@@ -8,15 +8,22 @@ import sys
 import io
 # Open file word
 
+# Get file by url
 client = boto3.client('s3')
 obj = client.get_object(
     Bucket = 'farcurtypartner',
     Key = sys.argv[1]
 )
+# Convert to docx
 object_as_streaming_body = obj['Body']
 object_as_bytes = object_as_streaming_body.read()
 object_as_file_like = io.BytesIO(object_as_bytes)
+
+# Get data
 doc = docx.Document(object_as_file_like)
+if doc.paragraphs[-1].text!="#End" :
+    doc.add_paragraph("#End")
+    
 all_text = doc.paragraphs
 
 # Lưu câu hỏi
@@ -35,10 +42,12 @@ luuanh=[]
 exams=[]
 saveimage=[]
 checkimage={}
+
+
 def TimCauHoi(a):
     cauhoi = a.text
     # Nhận câu hỏi và đáp án theo ký tự
-    words=['PART 1','Câu3','1)','2)','3)','###']
+    words=['###']
     words1 = ['A', 'B', 'C', 'D', 'E', 'F','a','b','c','d','e','f']
     words11 = []
     # Xử lý ký tự đầu đáp án
@@ -53,22 +62,22 @@ def TimCauHoi(a):
         words.append('Câu ' + str(i))
         words.append(str(i) + '/')
         words.append(str(i) + '.')
-    # Xử lý dòng văn bản chuyển sang ký tự đặt biệt để nhận biết câu hỏi và đáp án
+     # Xử lý dòng văn bản chuyển sang ký tự đặt biệt để nhận biết câu hỏi và đáp án
     # For tìm câu hỏi
     for word in words:
        #  For tìm đáp án
        for worda in words11:
             # Kiểm tra có phải là câu hỏi không
             if word in cauhoi:
-                cauhoi = cauhoi.replace(word, '###')
+                cauhoi = cauhoi.replace(word, '^-^')
                 a.text=cauhoi
             # Kiểm tra có phải là đáp án không
-            if worda in cauhoi:
+            if worda in cauhoi[:4]:
                 for run in a.runs:
                     if run.bold:
-                        cauhoi = cauhoi.replace(worda, '$$')
+                        cauhoi = cauhoi.replace(worda, '$$-')
                     else:
-                        cauhoi = cauhoi.replace(worda, '**')
+                        cauhoi = cauhoi.replace(worda, '/-/')
                 a.text = cauhoi
     return (a.text)
 
@@ -102,7 +111,8 @@ def hasImage(par):
 
 
 for a in all_text:
-    if "###" in TimCauHoi(a):
+
+    if ("^-^") in TimCauHoi(a):
         if answerthamthoi !=[]:
             luutamthoi["Answer"] = answerthamthoi
             luutamthoi["Trueanswer"] = trueanswer
@@ -113,14 +123,13 @@ for a in all_text:
             answerthamthoi=[]
             trueanswer=[]
             index = index + 1
-        cauhoi = TimCauHoi(a).replace('###', '').strip()
+        cauhoi = TimCauHoi(a).replace('^-^', '').strip()
         luutamthoi['Question'] = cauhoi
-
-    if ("**"or"$$") in TimCauHoi(a):
-        dapan=TimCauHoi(a).replace('**','').strip()
+    if ("/-/"or"$$-") in TimCauHoi(a):
+        dapan=TimCauHoi(a).replace('/-/','').strip()
         answerthamthoi.append(dapan)
-    if "$$" in TimCauHoi(a):
-        dapandung = TimCauHoi(a).replace('$$', '').strip()
+    if "$$-" in TimCauHoi(a):
+        dapandung = TimCauHoi(a).replace('$$-', '').strip()
         answerthamthoi.append(dapandung)
         trueanswer.append(dapandung)
     if "#End" in TimCauHoi(a):
@@ -140,7 +149,7 @@ for a in all_text:
             luuanh.append( checkimage[str(hasImage(a))])
 
     # print(a.text)
-error=['error']
+
 print(json.dumps(exams))
 
 # import docx2txt as d2t

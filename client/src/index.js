@@ -1,28 +1,26 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route,Redirect } from "react-router-dom";
 import "./index.css";
 import App from "./App";
-import Createexam from "./components/mixedexam/createexam";
 import Homepage from "./components/homepage/homepage";
-import Importexam from "./components/mixedexam/import";
-import Areaprint from"./components/mixedexam/ExamResult/printarea"
-import {Provider} from 'react-redux'
-import {createStore} from 'redux'
-import allReducer from './reducers'
-const myStore =createStore(allReducer)
+import Createexam from "./components/CreateExam/maincreate";
+import MainGradingexam from "./components/Gradingexam/Maingrading";
+import Gradingexam from "./components/Gradingexam/Gradingexam";
+import Reviewexam from "./components/CreateExam/reviewexam";
+
 ReactDOM.render(
-  <Provider store={myStore}>
   <Router>
-    <Switch>
-        <Route path="/create" component={Createexam}></Route>
-        <Route path="/import" component={Importexam}></Route>
-        <Route path='/areaexam' component={Areaprint}></Route>
-      <App>
-        <Route  path="/" component={Homepage}></Route>
-      </App>
-    </Switch>
-  </Router>
-  </Provider>,
+    <App>
+      <Switch>
+        <Route exact path="/" component={Homepage}></Route>
+        <Route exact path="/create" component={Createexam}></Route>
+        <Route exact path="/areaexam/:slug" component={Reviewexam}></Route>
+        <Route exact path="/Maingrading" component={MainGradingexam}></Route>
+        <Route path="/grading/:slug" component={Gradingexam}></Route>
+        <Redirect from="*" to="/" />
+      </Switch>
+    </App>
+  </Router>,
   document.getElementById("root")
 );

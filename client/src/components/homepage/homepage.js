@@ -1,141 +1,105 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+
 class homepage extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <>
-        <div>
-          {/* menu */}
-          <nav
-            style={{ backgroundColor: "#319AEB" }}
-            className="navbar navbar-light justify-content-between fixed-top"
+        <section id="hero" className="d-flex align-items-center">
+          <div
+            className="container position-relative"
+            data-aos="fade-up"
+            data-aos-delay={100}
           >
-            <a>
-              <img
-                src="./assets/img/logo1.png"
-                width={150}           
-                className="d-inline-block align-top"
-                alt
-              />
-            </a>
-          </nav>
-          {/* end-menu */}
-          {/* ===================================== */}
-          {/* Phan 1*/}
-          <section id="hero" className="d-flex align-items-center">
-            <div className="container float-left">
-              <h1>Welcome to our website </h1>
-              <h2>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry.{" "}
-              </h2>
+            <div className="row justify-content-center">
+              <div className="col-xl-7 col-lg-9 text-center">
+                <h1>TIẾT KIỆM THỜI GIAN HƠN CHỈ VỚI VÀI THAO TÁC</h1>
+                <h2> Chúng tôi là C2SE.16</h2>
+              </div>
             </div>
-          </section>
-          {/* end_Phan_1 */}
-          {/* ======= FUNCTIONS Section ======= */}
-          <section id="funct" class="funct">
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-12 inline-block ">
-                <div className="icon-boxes justify-content-center">
-                  <div className="row">
-                      <div className="col-xl-4 ">
-                    <Link to="/create" style={{ textDecoration: 'none'}}>
-                        <div className="icon-box mt-4 mt-xl-0 icon">
-                          <i className="far fa-file-alt" />
-                          <h4>Tạo đề</h4>
-                          <p>
-                            Lorem Ipsum is simply dummy text of the printing and
-                            typesetting industry.{" "}
-                          </p>
-                        </div>
-                    </Link>
-                      </div>
-                    <div className="col-xl-2  "></div>
-                      <div className="col-xl-4  ">
-                    <Link to="/create" style={{ textDecoration: 'none'}}>
-                        <div className="icon-box mt-4 mt-xl-0 icon">
-                          <i className="fas fa-check-circle" />
-                          <h4>Chấm điểm</h4>
-                          <p>
-                            Lorem Ipsum is simply dummy text of the printing and
-                            typesetting industry.
-                          </p>
-                        </div>
-                    </Link>
-                      </div>
-                  </div>
+            <div className="row icon-boxes">
+              <div
+                className="col-md-5 col-lg-4 d-flex align-items-stretch m-md-auto pb-sm-3 "
+                data-aos="zoom-in"
+                data-aos-delay={200}
+              >
+                <div className="icon-box">
+                  <Link to="/create" style={{ textDecoration: "none" }}>
+                    <div className="icon">
+                      <i className="far fa-file-alt" />
+                    </div>
+                    <h4 className="title">TẠO ĐỀ</h4>
+                  </Link>
                 </div>
-                {/* End .content*/}
+              </div>
+              <div
+                className="col-md-5 col-lg-4 d-flex align-items-stretch m-md-auto pb-sm-3 "
+                data-aos="zoom-in"
+                data-aos-delay={300}
+              >
+                <div className="icon-box">
+                  <Link to="/Maingrading" style={{ textDecoration: "none" }}>
+                    <div className="icon">
+                      <i className="fas fa-check-circle" />
+                    </div>
+                    <h4 className="title">CHẤM ĐIỂM</h4>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
-</section>
-          {/* End FUNCTIONS Section */}
-          {/* Introductions */}
-          <div className="container phan1 border-top">
+        </section>
+        {/* end-funct */}
+        <main>
+          {/* ======= About Section ======= */}
+          <div className="container-fluid bgb  p-xl-5">
             <div className="row">
-              <div className="col-sm-6 ">
-                <img src="./assets/img/phan1.png" className="img hinh" alt />
+              <div className="col-md-2 " />
+              <div className="col-md-4 ">
+                <img
+                  src="./assets/img/taoDe.png"
+                  width="75%"
+                  data-aos="zoom-in-down"
+                  alt="icon tao de"
+                />
               </div>
-              <div className="col-sm nd">
+              <div className="col-md-4 " data-aos="fade-left">
                 <div className="section-title">
                   <h2>Tạo đề</h2>
                 </div>
+                <p className="d-flex justify-content-center"></p>
                 <p className="d-flex justify-content-center">
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a type
-                  specimen book.
+                  Giúp giảng viên có thể tạo ra các bài kiểm tra trắc nghiệm dựa
+                  trên ngân hàng câu hỏi dưới dạng file word
                 </p>
+                <p />
               </div>
             </div>
           </div>
-          <div className="container phan2 mt-5 border-top">
+          <div className="container-fluid p-xl-5 ">
             <div className="row">
-              <div className="col-sm-6 nd">
-                <div className="section-title mt-3">
+              <div className="col-md-2 " />
+              <div className="col-md-4 " data-aos="fade-right">
+                <div className="section-title">
                   <h2>Chấm điểm</h2>
                 </div>
                 <p className="d-flex justify-content-center">
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a type
-                  specimen book.
+                  Giúp giảng viên có thể chấm điểm các bài kiểm tra đã tạo trên
+                  website Farcurty Partne thông qua hình ảnh
                 </p>
               </div>
-              <div className="col-sm-6 ">
-                <iframe
-                  className="hinh"
-                  width={550}
-                  height={315}
-                  src="https://www.youtube.com/embed/9P_sQw9BBuE?start=15"
-                  title="YouTube video player"
-                  frameBorder={0}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
+              <div className="col-md-4 ">
+                <img
+                  className="img hinh"
+                  src="./assets/img/chamDiem1.png"
+                  data-aos="fade-down-left"
+                  width="75%"
+                  alt="icon cham diem"
                 />
               </div>
             </div>
           </div>
-
-          <div className="container phan1 mt-2" style={{ height: 50 }}>
-            <div className="row">
-              <div className="col-sm-4" />
-              <div className="col-sm-4 mt-3 d-flex justify-content-center ">
-                <small>
-                  © Copyright <b>c2se.16</b>
-                </small>
-              </div>
-              <div className="col-sm-4" />
-            </div>
-          </div>
-        </div>
+        </main>
       </>
     );
   }

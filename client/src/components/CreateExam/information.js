@@ -1,5 +1,6 @@
 import { Component } from "react";
 import axios from "axios";
+
 class Informationexam extends Component {
   constructor(props) {
     super(props);
@@ -18,20 +19,19 @@ class Informationexam extends Component {
       mixanswer: false,
       error: {},
       data: {},
-      Maxqslength:50
+      Maxqslength: 50,
     };
   }
-  changeDataprops=(data)=>{
+  changeDataprops = (data) => {
     this.setState({
-      data:data
-    })
-  }
+      data: data,
+    });
+  };
   //___________________________________________________
   //Import file docx function
   // On file select (from the pop up)
   onFileChange = async (event) => {
     // Update the state
-
     if (
       event.target.files[0].type ===
       "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
@@ -53,6 +53,12 @@ class Informationexam extends Component {
       return <p style={{ color: "red" }}>{renderError["fomat"]}</p>;
     }
   };
+  RenderError2 = () => {
+    let renderError = this.state.error;
+    if (Object.keys(renderError).length > 0) {
+      return <p style={{ color: "red" }}>{renderError["information"]}</p>;
+    }
+  };
   // On file upload (click the upload button)
   onFileUpload = () => {
     // Create an object of formData
@@ -63,7 +69,6 @@ class Informationexam extends Component {
       this.state.selectedFile,
       this.state.selectedFile.name
     );
-    
 
     // Request made to the backend api
     // Send formData object
@@ -72,157 +77,181 @@ class Informationexam extends Component {
   renderRawdata = async (event) => {
     event.preventDefault();
 
-    if (this.state.selectedFile) {
-      let {selectedFile}=this.state
+    if (this.state.selectedFile !== null) {
+      let { selectedFile } = this.state;
 
-    //Xoá thông báo lỗi
-    let subError = {};
-    subError["fomat"] = "";
-    this.setState({ error: subError });
-    //Tạo formdata truyền dữ liệu 
-    const formData = new FormData();
-    // Update the formData object
-    formData.append(
-      "avatar",
-      selectedFile
-    );
-    
-    
-      let datade={load:'load'}
+      //Xoá thông báo lỗi
+      let subError = {};
+      subError["fomat"] = "";
+      this.setState({ error: subError });
+      //Tạo formdata truyền dữ liệu
+      const formData = new FormData();
+      //Update the formData object
+      formData.append("avatar", selectedFile);
+
+      let datade = { load: "load" };
       this.props.dataexam(datade);
       const data = await axios.post(
-        `/exam/import`,formData
+        `http://localhost:5000/exam/import`,
+        formData
       );
       if (data) {
-        if(this.state.quanlityQs>0  && this.state.quanlityQs> data.data['rawquestions'].length){
-          if(this.state.Maxqslength>data.data['rawquestions'].length){
-            this.setState({ data: data.data ,quanlityQs:0, quanlityExam: 0,Maxqslength:data.data['rawquestions'].length});
+        if (
+          this.state.quanlityQs > 0 &&
+          this.state.quanlityQs > data.data["rawquestions"].length
+        ) {
+          if (this.state.Maxqslength > data.data["rawquestions"].length) {
+            this.setState({
+              data: data.data,
+              quanlityQs: 0,
+              quanlityExam: 0,
+              Maxqslength: data.data["rawquestions"].length,
+            });
+            this.props.dataexam(data.data);
+          } else {
+            this.setState({ data: data.data, quanlityQs: 0, quanlityExam: 0 });
             this.props.dataexam(data.data);
           }
-          else{
-            this.setState({ data: data.data ,quanlityQs:0, quanlityExam: 0});
+        } else {
+          if (this.state.Maxqslength > data.data["rawquestions"].length) {
+            this.setState({
+              data: data.data,
+              Maxqslength: data.data["rawquestions"].length,
+            });
             this.props.dataexam(data.data);
-          }
-        }
-        else{
-          if(this.state.Maxqslength>data.data['rawquestions'].length){
-            this.setState({ data: data.data ,Maxqslength:data.data['rawquestions'].length});
-            this.props.dataexam(data.data);
-          }else{
-            this.setState({ data: data.data});
+          } else {
+            this.setState({ data: data.data });
             this.props.dataexam(data.data);
           }
         }
       } else {
-      this.props.dataexam("error");
+        this.props.dataexam("error");
       }
-    }
-    else{
+    } else {
       let subError = {};
       subError["fomat"] = "Please import file docx";
       this.setState({ error: subError });
     }
+
+    // this.setState({slug:dataaaaa["slug"]})
+    // this.props.dataexam(dataaaaa);
   };
   // _____________________________________________
   SubmitData = async (e) => {
     e.preventDefault();
     // Kiểm tra điều kiện
 
-    let validationSubmit = true;
+    let validationSubmit = false;
     // Kiểm tra điều kiện thông tin nhập vào
 
     // Kiem tra file
     if (this.state.selectedFile) {
-      // Kiem tra ten file
-      if (this.state.fileName) {
-      } else {
-        validationSubmit = false;
-      }
-
       // Kiem tra tieu de
       if (this.state.title) {
+        let errorss = this.state.error;
+        errorss["information"] = "";
+        this.setState({ error: errorss });
+        // Kiem tra thoi gian
+        if (this.state.time) {
+          let errorss = this.state.error;
+          errorss["information"] = "";
+          this.setState({ error: errorss });
+          // Kiem tra id bài kiêm tra //random
+          if (this.state.password) {
+            let errorss = this.state.error;
+            errorss["information"] = "";
+            this.setState({ error: errorss });
+            // Điều kiện trộn đề
+            if (this.state.quanlityExam === 0) {
+              // Bao Loi
+              validationSubmit = false;
+              let errorss = this.state.error;
+              errorss["information"] = "quanlity exam is empty";
+              this.setState({ error: errorss });
+            } else {
+              let errorss = this.state.error;
+              errorss["information"] = "";
+              this.setState({ error: errorss });
+              if (this.state.quanlityQs === 0) {
+                // Bao Loi
+                validationSubmit = false;
+                let errorss = this.state.error;
+              errorss["information"] = "quanlity question is empty";
+              this.setState({ error: errorss });
+              } else {
+                let errorss = this.state.error;
+                errorss["information"] = "";
+                this.setState({ error: errorss });
+                if (this.mixquestion === false && this.mixanswer === false) {
+                  // Bao Loi
+                  let errorss = this.state.error;
+                  errorss["information"] = "choose option for random";
+                  this.setState({ error: errorss });
+                  validationSubmit = false;
+                } else {
+                  validationSubmit=true
+                }
+              }
+            }
+          } else {
+            validationSubmit = false;
+            let errorss = this.state.error;
+            errorss["information"] = "Please type passwords";
+            this.setState({ error: errorss });
+          }
+        } else {
+          validationSubmit = false;
+          let errorss = this.state.error;
+          errorss["information"] = "Please type description exam";
+          this.setState({ error: errorss });
+        }
       } else {
         validationSubmit = false;
-      }
-
-      // Kiem tra thoi gian
-      if (this.state.time) {
-      } else {
-        validationSubmit = false;
-      }
-
-      // Kiem tra id bài kiêm tra //random
-      if (this.state.idExam) {
-      } else {
-        // validationSubmit = false;
-      }
-      // Kiem tra mat khau
-      if (this.state.password) {
-      } else {
-        validationSubmit = false;
-      }
-
-      // Điều kiện trộn đề
-      if (this.state.quanlityExam === 0) {
-        // Bao Loi
-        validationSubmit = false;
-      } else {
-      }
-      if (this.state.quanlityQs === 0) {
-        // Bao Loi
-        validationSubmit = false;
-      } else {
-      }
-      if (this.mixquestion === false && this.mixanswer === false) {
-        // Bao Loi
-        validationSubmit = false;
-      } else {
+        let errorss = this.state.error;
+        errorss["information"] = "Please type titles exam";
+        this.setState({ error: errorss });
       }
       if (validationSubmit) {
-      
         let subError = {};
         subError["fomat"] = "";
+        subError["information"] = "";
         this.setState({ error: subError });
-        let check =this.state.data
-        if(Object.keys(check).length>0){
-      
-          let data=this.state.data
-          let dataSend={
-            data:this.state.data,
+        let check = this.state.data;
+        if (Object.keys(check).length > 0) {
+          let dataSend = {
+            data: this.state.data,
             quanlityExam: this.state.quanlityExam,
             quanlityQs: this.state.quanlityQs,
-            title:this.state.title,
-            timedoexam:this.state.time,
-            mixquestion:this.state.mixquestion,
-            mixanswer:this.state.mixanswer,
-            password:this.state.password
-          }
-           let getdata= await axios.post(
-          `/exam/import/mixquestion`,dataSend );
+            title: this.state.title,
+            timedoexam: this.state.time,
+            mixquestion: this.state.mixquestion,
+            mixanswer: this.state.mixanswer,
+            password: this.state.password,
+          };
+          let getdata = await axios.post(
+            `http://localhost:5000/exam/import/mixquestion`,
+            dataSend
+          );
           if (getdata) {
-           this.setState({ data: getdata.data });
-           this.props.dataexam(getdata.data);
-          
-           
+            // Lấy dữ liệu đề đã trộn lên font-end
+            this.setState({ data: getdata.data.data });
+            this.props.dataexam(getdata.data.data);
           } else {
-          
             this.props.dataexam("error");
           }
-        }
-        else{
+        } else {
           let subError = {};
           subError["fomat"] = "please click upload file";
           this.setState({ error: subError });
         }
-        }
-      
+      }
     } else {
       validationSubmit = false;
-      let subError={}
+      let subError = {};
       subError["fomat"] = "Please import file docx";
       this.setState({
-        error:subError
-      })
+        error: subError,
+      });
     }
   };
 
@@ -242,14 +271,12 @@ class Informationexam extends Component {
         });
       }
     }
-  
   };
   HandleQuanlityQs = (e) => {
     e.preventDefault();
     let a = this.state.quanlityQs;
     if (e.target.name === "up") {
-      console.log(this.state.Maxqslength)
-      if (a+5 <= this.state.Maxqslength) {
+      if (a + 5 <= this.state.Maxqslength) {
         this.setState({
           quanlityQs: a + 5,
         });
@@ -261,7 +288,6 @@ class Informationexam extends Component {
         });
       }
     }
-   
   };
   HandleChange = (e) => {
     e.preventDefault();
@@ -271,7 +297,6 @@ class Informationexam extends Component {
   };
 
   HandleOption = (e) => {
-   
     this.setState({ [e.target.name]: !this.state[e.target.name] });
   };
   render() {
@@ -328,18 +353,19 @@ class Informationexam extends Component {
                             <input
                               type="text"
                               className="form-control"
-                              maxlength="50"
+                              maxLength="50"
                               name="title"
                               onChange={this.HandleChange}
                             />
+                            <p></p>
                           </div>{" "}
                           {/* form-group end.// */}
                           <div className="col form-group">
-                            <label>Thời gian</label>
+                            <label>Mô Tả thêm</label>
                             <input
                               type="text"
                               className="form-control"
-                              maxlength="50"
+                              maxLength="50"
                               name="time"
                               onChange={this.HandleChange}
                             />
@@ -355,6 +381,7 @@ class Informationexam extends Component {
                               type="text"
                               className="form-control"
                               readOnly
+                              value={this.state.idExam}
                             />
                           </div>{" "}
                           {/* form-group end.// */}
@@ -363,7 +390,7 @@ class Informationexam extends Component {
                             <input
                               type="password"
                               className="form-control"
-                              maxlength="10"
+                              maxLength="10"
                               name="password"
                               onChange={this.HandleChange}
                             />
@@ -443,19 +470,20 @@ class Informationexam extends Component {
                               <input
                                 type="checkbox"
                                 className="form-check-input"
-                                id="exampleCheck1"
+                                id="exampleCheck2"
                                 name="mixanswer"
                                 defaultChecked={this.state.mixanswer}
                                 onChange={this.HandleOption}
                               />
                               <label
                                 className="form-check-label"
-                                htmlFor="exampleCheck1"
+                                htmlFor="exampleCheck2"
                               >
                                 Xáo trộn câu trả lời
                               </label>
                             </div>
                           </div>{" "}
+                          {this.RenderError2()}
                           {/* form-group end.// */}
                         </div>
                         <div className="form-group">

@@ -1,5 +1,4 @@
 import { Component } from "react";
-const lodash = require("lodash");
 class Rawquestion extends Component {
   constructor(props) {
     super(props);
@@ -13,34 +12,31 @@ class Rawquestion extends Component {
     var datademo = subdata.filter((obj) => {
       return obj.Question === e.target.name;
     });
-     subdata.filter((obj) => {
+    subdata.filter((obj) => {
       if (datademo[0] === obj) {
         let a = [];
         a.push(e.target.value);
         obj.Trueanswer = a;
       }
     });
-     this.setState({
+    this.setState({
       subdatasource: subdata,
     });
   };
 
-
   Handleupdate = (e) => {
-   
-
-    this.props.chagedata(this.state.subdatasource)
-    if(this.state.subdatasource){
-    this.setState({
-      datasource:this.state.subdatasource
-    })
-  }
+    this.props.chagedata(this.state.subdatasource);
+    if (this.state.subdatasource) {
+      this.setState({
+        datasource: this.state.subdatasource,
+      });
+    }
   };
   componentDidMount() {
     if (this.props.rawquestion["rawquestion"]) {
       this.setState({
         datasource: this.props.rawquestion["rawquestion"],
-        subdatasource:this.props.rawquestion["rawquestion"]
+        subdatasource: this.props.rawquestion["rawquestion"],
       });
     }
   }
@@ -112,32 +108,33 @@ class Rawquestion extends Component {
       });
     }
   };
-  loadding=()=>{
-    if(this.props.rawquestion["load"]==='load'){
-    return(<div class="loading">Loading&#8230;</div>)
+  loadding = () => {
+    if (this.props.rawquestion["load"] === "load") {
+      return <div class="loading">Loading&#8230;</div>;
     }
-  }
+  };
   render() {
-
     return (
       <>
         <div className="card">
-          <div className="card-header" id="headingOne">
+          <div
+            className="card-header"
+            id="headingOne"
+            data-toggle="collapse"
+            data-target="#collapse"
+            aria-expanded="false"
+            aria-controls="#collapse"
+          >
             <h2 className="mb-0 col-10">
               <div
                 className="btn btn-link collapsed p-0"
                 style={{ textDecoration: "none" }}
                 type="button"
-                data-toggle="collapse"
-                data-target="#collapse"
-                aria-expanded="false"
-                aria-controls="#collapse"
               >
                 <h3>Đề gốc</h3>
-              {this.loadding()}
+                {this.loadding()}
               </div>
             </h2>
-
           </div>
           <div
             id="collapse"

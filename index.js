@@ -12,7 +12,8 @@ connectToDatabase();
 // Goi Router
 const router = require("./routers");
 
-
+app.use(express.json({limit: '10mb', extended: true}))
+app.use(express.urlencoded({limit: '10mb', extended: true}))
 app.use(express.urlencoded({extended:false}))
 app.use(express.json())
 app.use(cors())
