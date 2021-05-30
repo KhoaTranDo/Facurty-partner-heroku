@@ -208,13 +208,13 @@ jpg_img = cv2.imencode('.jpg', answerSheet)
 my_string = base64.b64encode(jpg_img[1]).decode('utf-8')
 # print(correctCount)
 # print("data:image/jpg;base64,"+my_string)
-data={
+resultdata={
     "image":"data:image/jpg;base64,"+my_string,
     "correctquestion":correctCount,
     "nameStudent":sys.argv[3],
     "totalqs":sys.argv[4]
 }
 
-print (json.dumps(data))
+print (json.dumps(resultdata))
 # cv2.imshow("codeSheet", answerSheet)
 # cv2.waitKey()

@@ -1,26 +1,26 @@
 import { Component } from "react";
-import Infor from './information'
-import Rawquestion from './rawquestionlist'
-import Listexam from './mixexamlist'
-
+import Infor from "./information";
+import Rawquestion from "./rawquestionlist";
+import Listexam from "./mixexamlist";
 
 export default class MainCreate extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-          rawdata: {},
-        };
-      }
-      Changerawdata=(data)=>{
-        let raw=this.state.rawdata
-        raw=data
-        this.setState({rawdata:raw})
-      }
-      setData = async (datafile) => {
-        await this.setState({
-          rawdata: datafile,
-        });
-      };
+  constructor(props) {
+    super(props);
+    this.state = {
+      rawdata: {},
+    };
+  }
+  Changerawdata = async (data) => {
+    let raw = this.state.rawdata;
+    console.log(data);
+    raw = data;
+    await this.setState({ rawdata: raw });
+  };
+  setData = async (datafile) => {
+    await this.setState({
+      rawdata: datafile,
+    });
+  };
   render() {
     return (
       <>
@@ -44,7 +44,10 @@ export default class MainCreate extends Component {
               </div>
             </div>
             <div className="row mt-5">
-              <Listexam rawquestion={this.state.rawdata}  chagedata={this.Changerawdata} />
+              <Listexam
+                rawquestion={this.state.rawdata}
+                chagedata={this.Changerawdata}
+              />
             </div>
           </div>
         </div>

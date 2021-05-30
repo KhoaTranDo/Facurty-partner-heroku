@@ -146,7 +146,6 @@ class Exam {
     // so sanh pass word
     // let isPasswordMatch = await bcryptjs.compare(password, user.password);
     data1["exammixed"] = arrmixexam;
-
     data1["qrimage"] = data["qrimage"];
     data1["title"] = title;
     data1["time"] = timedoexam;
@@ -167,9 +166,8 @@ class Exam {
         slug,
         qrimage,
       });
-      let examcheck = await Examschema.findOne({ slug: slug });
-      if (examcheck) {
-        Examschema.updateOne(
+    
+        Examschema.findOneAndUpdate(
           { slug: slug },
           {
             slug: slug,
@@ -185,17 +183,23 @@ class Exam {
             if (err) {
               console.log(err);
             } else {
-              console.log(result);
+              if(result){
+              Examschema.findOne({ slug: result['slug'] }, (err, result1) => {
+                if (err) console.log(err);
+                return res.status(200).json({ data: result1, msg: "sucess" });
+              })
+              }
+              else{
+                dataexam.save().then((result) => {           
+                  return res.status(200).json({ data: result, msg: "sucess" });
+                });
+              }
             }
+
           }
         );
-      } else {
-        dataexam.save().then((result) => {
-          return res.status(200).json({ data: result, msg: "sucess" });
-        });
-      }
     } catch (error) {
-      return res.status(500).json({ msg: "Server Error..." });
+      next(error);
     }
   }
   // Get base64 image code
@@ -236,7 +240,7 @@ class Exam {
     let { file, idexam, slug, nameStudent } = req.body;
     var uploadStr = file["base64"];
     let url = "";
-    let dataraw={}
+    let dataraw=""
     await cloudinary.v2.uploader.upload(
       uploadStr,
       {
@@ -245,10 +249,9 @@ class Exam {
       },
       function (error, result) {
         url = result.url;
-        console.log(result.url);
       }
     );
-    let imagesend = JSON.stringify({ image: file["base64"] });
+    // let imagesend = JSON.stringify({ image: file["base64"] });
     try {
       Examschema.findOne({ slug: slug }).then(async (result) => {
         if (result) {
@@ -263,22 +266,17 @@ class Exam {
             data["listanswer"].length,
           ]);
           process.stdout.on("data", function (data) {
-             dataraw=data.toString()   
+             dataraw+=data.toString()
           })
-          .on("end", () => {
+          .on("close", () => {
             if (!dataraw) {
-              console.log('aa')
               return res.status("import file error");
             } else {
-              console.log('bbb')
-              console.log(dataraw)
               return res.status(200).send(dataraw); 
             }
           });
-          process.stderr.on("data", function (data) {
-            let dataresult=dataraw
-            console.log(dataresult)
-            return res.status(404).json(data.toString("utf-8"));
+          process.stderr.on("data", function (err) {
+            return res.status(404).json(err.toString("utf-8"));
           });
         } else {
           res.json({ error: "No have any data" });
@@ -384,7 +382,11 @@ class Exam {
               if (err) {
                 console.log(err);
               } else {
-                res.send(data);
+                Examschema.findOne({ slug: data['slug'] }, (err, result1) => {
+                  if (err) console.log(err);
+                  return res.send(result1);
+                })
+                // res.send(data);
               }
             }
           ).select("-password");

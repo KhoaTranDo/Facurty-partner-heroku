@@ -58,6 +58,7 @@ class Grading extends Component {
 
           this.setState({
             file: e.target.files[0],
+            error:{}
           });
         } else {
           check = false;
@@ -95,9 +96,12 @@ class Grading extends Component {
   Summitdata = async (e) => {
     if(this.state.file){
     if(this.state.data["slug"]){
+      let geterror = this.state.error;
+      geterror["image"] = "";
       if(this.state.idexam){
         this.setState({
           loading: "loadding",
+          error: geterror,
         });
         let sendData = {
           nameStudent: this.state.nameStudent,

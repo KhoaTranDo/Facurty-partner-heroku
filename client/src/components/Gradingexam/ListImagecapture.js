@@ -85,7 +85,7 @@ class ListImage extends Component {
             <div className="card-body d-flex justify-content-center">
               <img
                 src={index.image}
-                style={{ width: 175 }}
+                style={{ width: 175, height:300 }}
                 alt="#asd"
               />
             </div>

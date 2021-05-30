@@ -29,7 +29,7 @@ class Informationexam extends Component {
   };
   //___________________________________________________
   //Import file docx function
-  // On file select (from the pop up)
+  // On file select (from the pop up) check word
   onFileChange = async (event) => {
     // Update the state
     if (
@@ -47,33 +47,21 @@ class Informationexam extends Component {
       this.setState({ error: subError });
     }
   };
+
   RenderError = () => {
     let renderError = this.state.error;
     if (Object.keys(renderError).length > 0) {
       return <p style={{ color: "red" }}>{renderError["fomat"]}</p>;
     }
   };
+
   RenderError2 = () => {
     let renderError = this.state.error;
     if (Object.keys(renderError).length > 0) {
       return <p style={{ color: "red" }}>{renderError["information"]}</p>;
     }
   };
-  // On file upload (click the upload button)
-  onFileUpload = () => {
-    // Create an object of formData
-    const formData = new FormData();
-    // Update the formData object
-    formData.append(
-      "myFile",
-      this.state.selectedFile,
-      this.state.selectedFile.name
-    );
 
-    // Request made to the backend api
-    // Send formData object
-    //   axios.post("api/uploadfile", formData);
-  };
   renderRawdata = async (event) => {
     event.preventDefault();
 
@@ -133,17 +121,13 @@ class Informationexam extends Component {
       this.setState({ error: subError });
     }
 
-    // this.setState({slug:dataaaaa["slug"]})
-    // this.props.dataexam(dataaaaa);
   };
   // _____________________________________________
   SubmitData = async (e) => {
     e.preventDefault();
     // Kiểm tra điều kiện
-
     let validationSubmit = false;
     // Kiểm tra điều kiện thông tin nhập vào
-
     // Kiem tra file
     if (this.state.selectedFile) {
       // Kiem tra tieu de
@@ -234,6 +218,7 @@ class Informationexam extends Component {
           );
           if (getdata) {
             // Lấy dữ liệu đề đã trộn lên font-end
+            console.log(getdata.data.data)
             this.setState({ data: getdata.data.data });
             this.props.dataexam(getdata.data.data);
           } else {

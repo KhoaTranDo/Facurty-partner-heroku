@@ -32,6 +32,7 @@ class Listexam extends Component {
 
   }
   Rendermixexam = () => {
+    console.log(this.props.rawquestion)
     let data = this.props.rawquestion["exammixed"];
     if (this.props.rawquestion["exammixed"])
       return Object.keys(data).map((value, index) => {

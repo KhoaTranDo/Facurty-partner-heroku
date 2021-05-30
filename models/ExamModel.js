@@ -13,6 +13,7 @@ let ExamSchema = mongoose.Schema(
     timedoexam: {
       type: String,
       required: true,
+      unique: false
     },
     rawquestions: {
       type: Array,

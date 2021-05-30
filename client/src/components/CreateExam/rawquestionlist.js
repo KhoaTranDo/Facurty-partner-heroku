@@ -11,11 +11,11 @@ class Rawquestion extends Component {
     };
   }
   Handlechange = (e) => {
-    let subdata = this.props.rawquestion["rawquestions"];
-    var datademo = subdata.filter((obj) => {
+    let subdata = this.props.rawquestion;
+    var datademo = subdata["rawquestions"].filter((obj) => {
       return obj.Question === e.target.name;
     });
-    subdata.filter((obj) => {
+    subdata["rawquestions"].filter((obj) => {
       if (datademo[0] === obj) {
         let a = [];
         a.push(e.target.value);
@@ -41,7 +41,10 @@ class Rawquestion extends Component {
         blockedit: "blockdiv",
         uploaddata: "edit",
       });
-      this.props.chagedata(this.state.subdatasource);
+      if(this.state.subdatasource.length>0){
+        console.log(this.state.subdatasource)
+        this.props.chagedata(this.state.subdatasource);
+      }
     }
   };
   componentDidMount = async () => {
@@ -209,7 +212,7 @@ class Rawquestion extends Component {
                 onClick={this.Handleupdate}
                 id="button"
               >
-                {this.state.uploaddata === "edit" ? "Edit data" : "Update data"}
+                {this.state.uploaddata === "edit" ? "Edit" : "Change"}
               </button>
             </div>
           </div>
