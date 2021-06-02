@@ -271,6 +271,7 @@ class Exam {
               if (!dataraw) {
                 return res.status("import file error");
               } else {
+                console.log(dataraw)
                 return res.status(200).send(dataraw);
               }
             });
