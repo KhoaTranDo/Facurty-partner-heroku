@@ -164,7 +164,7 @@ class Rawquestion extends Component {
                           data-toggle="modal"
                           data-target={`#exampleModal${index}`}
                         >
-                          delete
+                          Delete
                         </button>
                       </div>
                     </div>
@@ -200,7 +200,7 @@ class Rawquestion extends Component {
                   style={{ textDecoration: "none" }}
                   type="button"
                 >
-                  <h3>Đề gốc</h3>
+                  <h3>Raw questions</h3>
                   {this.loadding()}
                 </div>
               </h2>

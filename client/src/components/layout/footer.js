@@ -8,20 +8,20 @@ export default class Footer extends Component {
           <div className="container ">
             <div className="row">
               <div className="col-sm-12 col-md-12">
-                <h4>Mô tả</h4>
+                <h4>ABOUT</h4>
                 <p className="text-center">
                   Farcurty Partner help the teacher to create a quiz exam test
                   quickly
                 </p>
               </div>
               <div className="col-xs-6 col-md-12">
-                <h4>Thành Viền</h4>
+                <h4>Member</h4>
                 <ul className="footer-links">
-                  <li>Nguyễn Cao Nguyên</li>
-                  <li>Trần Đỗ Anh Khoa</li>
-                  <li>Nguyễn Quang Huy</li>
-                  <li>Phạm Phú Hoàng</li>
-                  <li>Lê Hồng Được</li>
+                  <li>Nguyen Cao Nguyen</li>
+                  <li>Tran Do Anh Khoa</li>
+                  <li>Nguyen Quang Huy</li>
+                  <li>Pham Phu Hoang</li>
+                  <li>Le Hong Duoc</li>
                 </ul>
               </div>
             </div>
@@ -29,7 +29,7 @@ export default class Footer extends Component {
           <div className="container-flush footermini">
             <div className="row">
               <div className="col-12">
-                <p className="copyright-text text-center">Group project C2SE.16.</p>
+                <p className="copyright-text text-center">Group C2SE.16</p>
               </div>
             </div>
           </div>

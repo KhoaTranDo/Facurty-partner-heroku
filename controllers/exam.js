@@ -166,38 +166,36 @@ class Exam {
         slug,
         qrimage,
       });
-    
-        Examschema.findOneAndUpdate(
-          { slug: slug },
-          {
-            slug: slug,
-            titles: titles,
-            password: password,
-            rawquestions: rawquestions,
-            timedoexam: timedoexam,
-            optionmixed: optionmixed,
-            exammixed: exammixed,
-            qrimage: qrimage,
-          },
-          function (err, result) {
-            if (err) {
-              console.log(err);
-            } else {
-              if(result){
-              Examschema.findOne({ slug: result['slug'] }, (err, result1) => {
+
+      Examschema.findOneAndUpdate(
+        { slug: slug },
+        {
+          slug: slug,
+          titles: titles,
+          password: password,
+          rawquestions: rawquestions,
+          timedoexam: timedoexam,
+          optionmixed: optionmixed,
+          exammixed: exammixed,
+          qrimage: qrimage,
+        },
+        function (err, result) {
+          if (err) {
+            console.log(err);
+          } else {
+            if (result) {
+              Examschema.findOne({ slug: result["slug"] }, (err, result1) => {
                 if (err) console.log(err);
                 return res.status(200).json({ data: result1, msg: "sucess" });
-              })
-              }
-              else{
-                dataexam.save().then((result) => {           
-                  return res.status(200).json({ data: result, msg: "sucess" });
-                });
-              }
+              });
+            } else {
+              dataexam.save().then((result) => {
+                return res.status(200).json({ data: result, msg: "sucess" });
+              });
             }
-
           }
-        );
+        }
+      );
     } catch (error) {
       next(error);
     }
@@ -240,7 +238,7 @@ class Exam {
     let { file, idexam, slug, nameStudent } = req.body;
     var uploadStr = file["base64"];
     let url = "";
-    let dataraw=""
+    let dataraw = "";
     await cloudinary.v2.uploader.upload(
       uploadStr,
       {
@@ -265,16 +263,17 @@ class Exam {
             nameStudent,
             data["listanswer"].length,
           ]);
-          process.stdout.on("data", function (data) {
-             dataraw+=data.toString()
-          })
-          .on("close", () => {
-            if (!dataraw) {
-              return res.status("import file error");
-            } else {
-              return res.status(200).send(dataraw); 
-            }
-          });
+          process.stdout
+            .on("data", function (data) {
+              dataraw += data.toString();
+            })
+            .on("close", () => {
+              if (!dataraw) {
+                return res.status("import file error");
+              } else {
+                return res.status(200).send(dataraw);
+              }
+            });
           process.stderr.on("data", function (err) {
             return res.status(404).json(err.toString("utf-8"));
           });
@@ -289,37 +288,39 @@ class Exam {
     }
   }
 
-  saveResult(req, res) {
-    let{nameStudent,image,idexam,slug,scope}=req.body
-    let dataGrading={
-      "nameStudent":nameStudent,
-      "truequestion":scope,
-      "image":image
-    }
-    let save=[]
+saveResult(req, res) {
+    let { nameStudent, image, idexam, slug, scope } = req.body;
+    let dataGrading = {
+      nameStudent: nameStudent,
+      truequestion: scope,
+      image: image,
+    };
+    let save = [];
     try {
-      Examschema.findOne({ slug: slug }).then(async (result) => {
+     Examschema.findOne({ slug: slug }).then((result) => {
         if (result) {
           let data = result.exammixed.find(
             (x) => x.idexam.toString() === idexam
           );
-          save=data.grading
-          save.push(dataGrading)
-          data.grading=save
+          save = data.grading;
+          save.push(dataGrading);
+          data.grading = save;
           Examschema.updateOne(
             { slug: slug },
             {
-              exammixed: result.exammixed,    
+              exammixed: result.exammixed,
             },
-            function (err, result) {
+            (err, dataresult)  => {
               if (err) {
-                console.log(err);
+                console.log("loi" + err);
               } else {
-                console.log(result);
+              Examschema.findOne({ slug: slug }, (err, result1) => {
+                  if (err) console.log(err);
+                  return res.status(200).json(result1);
+                });
               }
             }
           );
-          
         } else {
           res.json({ error: "No have any data" });
         }
@@ -382,10 +383,10 @@ class Exam {
               if (err) {
                 console.log(err);
               } else {
-                Examschema.findOne({ slug: data['slug'] }, (err, result1) => {
+                Examschema.findOne({ slug: data["slug"] }, (err, result1) => {
                   if (err) console.log(err);
                   return res.send(result1);
-                })
+                });
                 // res.send(data);
               }
             }

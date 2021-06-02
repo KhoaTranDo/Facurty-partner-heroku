@@ -80,7 +80,7 @@ class Informationexam extends Component {
       let datade = { load: "load" };
       this.props.dataexam(datade);
       const data = await axios.post(
-        `http://localhost:5000/exam/import`,
+        `/exam/import`,
         formData
       );
       if (data) {
@@ -213,7 +213,7 @@ class Informationexam extends Component {
             password: this.state.password,
           };
           let getdata = await axios.post(
-            `http://localhost:5000/exam/import/mixquestion`,
+            `/exam/import/mixquestion`,
             dataSend
           );
           if (getdata) {
@@ -300,7 +300,7 @@ class Informationexam extends Component {
                             htmlFor="user_name"
                             className="col-md-12 col-form-label text-md-left"
                           >
-                            Tải tệp lên
+                            Select file to upload
                           </label>
 
                           <div className="input-group col-sm-10 mb-3">
@@ -325,7 +325,7 @@ class Informationexam extends Component {
                               className="btn btn-primary btn-block"
                               onClick={this.renderRawdata}
                             >
-                              Tải đề lên
+                              Upload File
                             </button>
                           </div>
                           <div className="input-group col-sm-12">
@@ -334,7 +334,7 @@ class Informationexam extends Component {
                         </div>
                         <div className="form-row">
                           <div className="col-sm-12 form-group">
-                            <label>Tiêu đề </label>
+                            <label>Title </label>
                             <input
                               type="text"
                               className="form-control"
@@ -346,7 +346,7 @@ class Informationexam extends Component {
                           </div>{" "}
                           {/* form-group end.// */}
                           <div className="col form-group">
-                            <label>Mô Tả thêm</label>
+                            <label>Decryption</label>
                             <input
                               type="text"
                               className="form-control"
@@ -361,7 +361,7 @@ class Informationexam extends Component {
                         {/* form-group end.// */}
                         <div className="form-row">
                           <div className="col form-group">
-                            <label>ID đề gốc</label>
+                            <label>ID</label>
                             <input
                               type="text"
                               className="form-control"
@@ -371,7 +371,7 @@ class Informationexam extends Component {
                           </div>{" "}
                           {/* form-group end.// */}
                           <div className="col form-group">
-                            <label>Mật khẩu</label>
+                            <label>Password</label>
                             <input
                               type="password"
                               className="form-control"
@@ -386,7 +386,7 @@ class Informationexam extends Component {
                         {/* form-group// */}
                         <div className="form-row">
                           <div className="col-sm-3 form-group">
-                            <label>Số lượng đề</label>
+                            <label>Number exams</label>
                             <br />
                             <>
                               <div className="number-input">
@@ -410,7 +410,7 @@ class Informationexam extends Component {
                             </>
                           </div>
                           <div className="col-sm-3 form-group">
-                            <label>Số câu trăc nghiệm</label>
+                            <label>Number quiz questions</label>
                             <br />
                             <>
                               <div className="number-input">
@@ -435,7 +435,7 @@ class Informationexam extends Component {
                           </div>{" "}
                           {/* form-group end.// */}
                           <div className="form-group col-sm-4 m-auto ">
-                            <div className="form-group form-check float-left">
+                            <div className="form-group form-check float-left  col-12">
                               <input
                                 type="checkbox"
                                 className="form-check-input"
@@ -448,10 +448,10 @@ class Informationexam extends Component {
                                 className="form-check-label"
                                 htmlFor="exampleCheck1"
                               >
-                                Xáo trộn câu hỏi
+                                Questions swap
                               </label>
                             </div>
-                            <div className="form-group form-check float-left">
+                            <div className="form-group form-check float-left  col-12">
                               <input
                                 type="checkbox"
                                 className="form-check-input"
@@ -464,7 +464,7 @@ class Informationexam extends Component {
                                 className="form-check-label"
                                 htmlFor="exampleCheck2"
                               >
-                                Xáo trộn câu trả lời
+                                Answers swap
                               </label>
                             </div>
                           </div>{" "}
@@ -477,7 +477,7 @@ class Informationexam extends Component {
                             className="btn btn-primary btn-block"
                             onClick={this.SubmitData}
                           >
-                            Tạo
+                            Create
                           </button>
                         </div>
                       </form>

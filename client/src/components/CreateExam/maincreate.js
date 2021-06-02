@@ -27,7 +27,7 @@ export default class MainCreate extends Component {
         <div>
           {/* end-menu */}
           <h3 className="text-center pt-5 mb-5" style={{ fontSize: 50 }}>
-            <b>TẠO ĐỀ</b>
+            <b>CREATE EXAMS</b>
           </h3>
           {/* input information  */}
           <Infor dataexam={this.setData} rawquestion={this.state.rawdata} />

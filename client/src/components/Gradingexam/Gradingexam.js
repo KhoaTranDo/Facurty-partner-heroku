@@ -2,6 +2,7 @@ import { Component } from "react";
 import { Redirect } from "react-router";
 import ListImage from "./ListImagecapture";
 import Webcame from "./Webcam";
+import { Link } from "react-router-dom";
 import axios from "axios";
 class Grading extends Component {
   constructor(props) {
@@ -15,16 +16,28 @@ class Grading extends Component {
       error: {},
       idexam: "",
       scope: "",
-      totalqs:"",
-      filename:""
+      totalqs: "",
+      filename: "",
     };
   }
-  componentDidMount = async () => {
+  componentWillMount = async () => {
     if (this.props.location.state) {
       await this.setState({
         data: this.props.location.state.data,
       });
     }
+  };
+  // componentDidMount = async () => {
+  //   if (this.props.location.state) {
+  //     await this.setState({
+  //       data: this.props.location.state.data,
+  //     });
+  //   }
+  // };
+  getnewdata = (dataraw) => {
+    this.setState({
+      data: dataraw,
+    });
   };
   HandleChanger = (e) => {
     this.setState({
@@ -42,14 +55,14 @@ class Grading extends Component {
           let { file } = this.state;
 
           file = e.target.files[0];
-      
+
           this.getBase64(file)
             .then((result) => {
               file["base64"] = result;
               this.setState({
                 file: result,
                 file,
-                filename:file['name']
+                filename: file["name"],
               });
             })
             .catch((err) => {
@@ -58,7 +71,7 @@ class Grading extends Component {
 
           this.setState({
             file: e.target.files[0],
-            error:{}
+            error: {},
           });
         } else {
           check = false;
@@ -94,66 +107,59 @@ class Grading extends Component {
     });
   };
   Summitdata = async (e) => {
-    if(this.state.file){
-    if(this.state.data["slug"]){
-      let geterror = this.state.error;
-      geterror["image"] = "";
-      if(this.state.idexam){
-        this.setState({
-          loading: "loadding",
-          error: geterror,
-        });
-        let sendData = {
-          nameStudent: this.state.nameStudent,
-          file: this.state.file,
-          idexam: this.state.idexam,
-          slug: this.state.data["slug"],
-        };
-        let getdata = await axios.post(
-          `http://localhost:5000/exam/grading/exam`,
-          sendData
-        );
-        if (getdata) {
-          console.log(getdata.data);
-          await this.setState({
-            image: getdata.data["image"],
-            scope: getdata.data["correctquestion"],
-            totalqs: getdata.data["totalqs"],
-            loading: "finish",
+    if (this.state.file) {
+      if (this.state.data["slug"]) {
+        let geterror = this.state.error;
+        geterror["image"] = "";
+        if (this.state.idexam) {
+          this.setState({
+            loading: "loadding",
+            error: geterror,
           });
+          let sendData = {
+            nameStudent: this.state.nameStudent,
+            file: this.state.file,
+            idexam: this.state.idexam,
+            slug: this.state.data["slug"],
+          };
+          let getdata = await axios.post(
+            `/exam/grading/exam`,
+            sendData
+          );
+          if (getdata) {
+            console.log(getdata.data);
+            await this.setState({
+              image: getdata.data["image"],
+              scope: getdata.data["correctquestion"],
+              totalqs: getdata.data["totalqs"],
+              loading: "finish",
+            });
+          } else {
+            console.log("error");
+          }
         } else {
-          console.log("error");
         }
+      } else {
       }
-      else{
-      
-      }
+    } else {
     }
-    else{
-        
-    }
-   }
-   else{
-        
-  }
-   
   };
   // Lưu ảnh lại
-  SaveData = () => {
+  SaveData = async () => {
     let sendData = {
       nameStudent: this.state.nameStudent,
       image: this.state.image,
       idexam: this.state.idexam,
       slug: this.state.data["slug"],
-      scope:this.state.scope
+      scope: this.state.scope,
     };
-    if(sendData){
-      let getdata = axios.post(
-        `http://localhost:5000/exam/grading/exam/save`,
+    if (sendData) {
+      let getdata = await axios.post(
+        `/exam/grading/exam/save`,
         sendData
       );
       if (getdata) {
-        console.log(getdata)
+        this.getnewdata(getdata.data);
       } else {
         console.log("error");
       }
@@ -167,12 +173,17 @@ class Grading extends Component {
   };
   Showimage = () => {
     // let check = "";
-    if (this.state.loading !== "loadding"  &&this.state.loading !== "load") {
+
+    if (this.state.loading !== "loadding" && this.state.loading !== "load") {
       return (
         <>
-           <button data-toggle="modal" data-target="#exampleModalCenter" className="btn btn-secondary btn-block">
-              Show result
-            </button>
+          <button
+            data-toggle="modal"
+            data-target="#exampleModalCenter"
+            className="btn btn-secondary btn-block"
+          >
+            Show result
+          </button>
           <div
             className="modal fade show"
             id="exampleModalCenter"
@@ -181,7 +192,6 @@ class Grading extends Component {
             aria-labelledby="exampleModalCenterTitle"
             aria-hidden="true"
           >
-         
             <div className="modal-dialog modal-dialog-centered" role="document">
               <div className="modal-content">
                 <div className="modal-header">
@@ -199,7 +209,9 @@ class Grading extends Component {
                 </div>
                 <div className="modal-body">
                   <h3>Name: {this.state.nameStudent}</h3>
-                  <p>Correct Answer {this.state.scope}/{this.state.totalqs}</p>
+                  <p>
+                    Correct Answer {this.state.scope}/{this.state.totalqs}
+                  </p>
                   <img src={this.state.image} />
                 </div>
                 <div className="modal-footer">
@@ -232,7 +244,11 @@ class Grading extends Component {
     if (idexam) {
       let id = idexam;
       return id.map((index) => {
-        return <option value={index["idexam"]}>{index["idexam"]}</option>;
+        return (
+          <option key={index} value={index["idexam"]}>
+            {index["idexam"]}
+          </option>
+        );
       });
     }
   };
@@ -243,12 +259,12 @@ class Grading extends Component {
   };
 
   render() {
-    if (this.props.location.state) {
+    if (this.state.data) {
       let titles = this.state.data.titles;
       return (
         <div>
           <h3 className="text-center pt-5 mb-5" style={{ fontSize: 50 }}>
-            <b>CHẤM ĐIỂM</b>
+            <b>Grading</b>
           </h3>
           {/* input information  */}
           <div className="container">
@@ -261,14 +277,31 @@ class Grading extends Component {
                         <div className="row">
                           <div className="col-md-12">
                             <label>
-                              <b>Tiêu đề:</b>
+                              <b>Title:</b>
                             </label>
                             <h5>{titles}</h5>
-                          </div>{" "}
+                          </div>
+                          <div className="col-md-12">
+                            <Link
+                              to={{
+                                pathname: `/areaexam/${this.state.data["slug"]}`,
+                                state: {
+                                  dataraw: this.state.data,
+                                },
+                              }}
+                            >
+                              <button
+                                type="button"
+                                className="btn btn-outline-success float-xl-right"
+                              >
+                                Download exams
+                              </button>
+                            </Link>
+                          </div>
                           {/* form-group end.// */}
                           <div className="col-md-12">
                             <label className="mr-2">
-                              <b>Mã đề</b>
+                              <b>Id exam</b>
                             </label>
                             <select
                               defaultValue=""
@@ -287,7 +320,7 @@ class Grading extends Component {
                         <div className="row">
                           <div className="col-12 form-group">
                             <label>
-                              <b>Tên học sinh</b>
+                              <b>Name student</b>
                             </label>
                             <input
                               type="text"
@@ -335,15 +368,15 @@ class Grading extends Component {
                         </div>
                         {/* form-group// */}
                         <div className="col-12 m-auto">
-                        <p style={{ color: "red" }}>
-                              {this.state.error["image"]}
-                            </p>
+                          <p style={{ color: "red" }}>
+                            {this.state.error["image"]}
+                          </p>
                           <button
                             type="submit"
                             className="btn btn-primary btn-block"
                             onClick={this.Summitdata}
                           >
-                            Xác nhận
+                            Accept
                           </button>
                         </div>
                       </div>
@@ -354,7 +387,7 @@ class Grading extends Component {
             </div>
           </div>
           {/* end ìnormation */}
-          <ListImage data={this.props.location.state}/>
+          <ListImage data={this.state.data} setdata={this.getnewdata} />
 
           {/* view */}
         </div>

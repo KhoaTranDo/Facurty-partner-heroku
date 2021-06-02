@@ -13,13 +13,17 @@ class ListImage extends Component {
       datagrading: this.props.data,
     });
   };
+  Deleteimage=(index,data)=>{
+    console.log(index)
+  }
   renderExamlist = () => {
+    console.log(this.props.data)
     if (this.props.data) {
-     let dataimage=this.props.data.data.exammixed;
+     let dataimage=this.props.data.exammixed;
      return dataimage.map((index)=>{
         return (
           <>
-            <h1>Đề {index.idexam}</h1>
+            <h1>Code {index.idexam}</h1>
             <div className="accordion col-12" id="accordionExample">
               <div className="card">
                 <div
@@ -37,7 +41,7 @@ class ListImage extends Component {
                   >
                     <h2 className="mb-0">
                       <i className="fas fa-photo-video noti" />
-                      Lịch sử chấm điểm
+                      Grading history
                     </h2>
                   </div>
                 </div>
@@ -63,7 +67,7 @@ class ListImage extends Component {
     }
   };
   renderImage = (data) => {
-    return data.grading.map((index)=>{
+    return data.grading.map((values,index)=>{
       return(
         <>
         <div className="col-sm-4">
@@ -72,19 +76,19 @@ class ListImage extends Component {
               <h5>
                 {" "}
                 <small>
-                  <b>Name: </b>{index.nameStudent}
+                  <b>Name: </b>{values.nameStudent}
                 </small>
               </h5>
               <h5>
                 {" "}
                 <small>
-                  <b>True: </b>{index.truequestion}/{data.questions.length}
+                  <b>True: </b>{values.truequestion}/{data.questions.length}
                 </small>
               </h5>
             </div>
             <div className="card-body d-flex justify-content-center">
               <img
-                src={index.image}
+                src={values.image}
                 style={{ width: 175, height:300 }}
                 alt="#asd"
               />
@@ -94,6 +98,7 @@ class ListImage extends Component {
                 type="button"
                 style={{ width: "45%" }}
                 className="btn btn-outline-danger  ml-1 float-xl-right "
+                onClick={()=>this.Deleteimage(index,data)}
               >
                 Xóa
               </button>

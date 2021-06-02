@@ -43,7 +43,7 @@ class Maingrading extends Component {
         }
        
         axios.post(
-          `http://localhost:5000/exam/grading`,
+          `/exam/grading`,
           data
         )
         .then(async(result)=>{
@@ -109,14 +109,14 @@ class Maingrading extends Component {
                 <div className="p-5 rounded shadow">
                   <div className="row pb-3">
                     <h3 className="text-center m-auto" style={{ fontSize: 30 }}>
-                      <b>CHẤM ĐIỂM</b>
+                      <b>GRADING</b>
                     </h3>
                   </div>
                   <hr className="border-bottom" />
                   <Captune data={this.setIdexam} />
                   <div className="row ">
                     <div className="col-6  pb-5 ">
-                      <label>ID đề gốc</label>
+                      <label>ID exams</label>
                       <input
                         type="text"
                         name="fId"
@@ -127,7 +127,7 @@ class Maingrading extends Component {
                     </div>{" "}
                     {/* form-group end.// */}
                     <div className="col-6">
-                      <label>Mật khẩu</label>
+                      <label>Password</label>
                       <input
                         type="password"
                         name="password"
@@ -143,7 +143,7 @@ class Maingrading extends Component {
                         className="btn btn-primary btn-block"
                         onClick={this.Summitdata}
                       >
-                        Xác nhận
+                        Accept
                       </button>
                     </div>
                   </div>
