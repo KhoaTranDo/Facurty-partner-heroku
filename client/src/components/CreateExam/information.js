@@ -31,10 +31,11 @@ class Informationexam extends Component {
   //Import file docx function
   // On file select (from the pop up) check word
   onFileChange = async (event) => {
-    // Update the state
+    // Update the state 
+    const type=['docx']
+    const check1 = event.target.files[0].name.split(".");
     if (
-      event.target.files[0].type ===
-      "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      type.includes(check1[1])
     ) {
       await this.setState({
         selectedFile: event.target.files[0],
@@ -79,11 +80,16 @@ class Informationexam extends Component {
 
       let datade = { load: "load" };
       this.props.dataexam(datade);
+      setTimeout(()=>{  let datade = {err:'error' };
+      this.props.dataexam(datade) }, 7000);
       const data = await axios.post(
-        `/exam/import`,
+        `http://localhost:5000/exam/import`,
         formData
       );
       if (data) {
+        this.setState({
+          idExam:data.data["slug"]
+        })
         if (
           this.state.quanlityQs > 0 &&
           this.state.quanlityQs > data.data["rawquestions"].length
@@ -213,12 +219,11 @@ class Informationexam extends Component {
             password: this.state.password,
           };
           let getdata = await axios.post(
-            `/exam/import/mixquestion`,
+            `http://localhost:5000/exam/import/mixquestion`,
             dataSend
           );
           if (getdata) {
             // Lấy dữ liệu đề đã trộn lên font-end
-            console.log(getdata.data.data)
             this.setState({ data: getdata.data.data });
             this.props.dataexam(getdata.data.data);
           } else {
@@ -346,7 +351,7 @@ class Informationexam extends Component {
                           </div>{" "}
                           {/* form-group end.// */}
                           <div className="col form-group">
-                            <label>Decryption</label>
+                            <label>description</label>
                             <input
                               type="text"
                               className="form-control"

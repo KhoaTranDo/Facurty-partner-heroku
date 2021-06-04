@@ -42,7 +42,7 @@ class Rawquestion extends Component {
         uploaddata: "edit",
       });
       if(this.state.subdatasource.length>0){
-        console.log(this.state.subdatasource)
+        // console.log(this.state.subdatasource)
         this.props.chagedata(this.state.subdatasource);
       }
     }

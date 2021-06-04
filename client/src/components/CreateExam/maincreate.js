@@ -12,7 +12,6 @@ export default class MainCreate extends Component {
   }
   Changerawdata = async (data) => {
     let raw = this.state.rawdata;
-    console.log(data);
     raw = data;
     await this.setState({ rawdata: raw });
   };

@@ -73,9 +73,8 @@ class Areaprint extends Component {
                 id={this.state.element}
                 style={{
                   backgroundColor: "white",
-                  padding: "20px 95px",
                 }}
-                className="m-auto border"
+                className="m-auto border border-dark border-5 p-5"
               >
                 <div className="row">
                   <img
@@ -87,7 +86,7 @@ class Areaprint extends Component {
                   />
                   <div className="col-9 float-right"></div>
                   <p id="index" className="m-auto" style={{ fontSize: "14pt" }}>
-                    <b>Đề {value.idexam}</b>
+                    <b>Code: {value.idexam}</b>
                   </p>
                 </div>
                 <div className="row">
@@ -141,11 +140,14 @@ class Areaprint extends Component {
     }
   };
   loadding = () => { 
-      return <div class="loading">Loading&#8230;</div>;
+      return <div className="loading">Loading&#8230;</div>;
   };
   render() {
     return (
       <div className="container mainreview">
+        <div className="row">
+          <h1 className='m-auto pt-5 pb-3'>Review exams document</h1>
+        </div>
         <ul className="nav nav-tabs" role="tablist">
           {this.Headerrender()}
         </ul>

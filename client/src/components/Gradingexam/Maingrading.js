@@ -43,7 +43,7 @@ class Maingrading extends Component {
         }
        
         axios.post(
-          `/exam/grading`,
+          `http://localhost:5000/exam/grading`,
           data
         )
         .then(async(result)=>{
@@ -122,9 +122,9 @@ class Maingrading extends Component {
                         name="fId"
                         className="form-control"
                         value={this.state.idexam}
-                        disabled
+                        readOnly
                       />
-                    </div>{" "}
+                    </div>
                     {/* form-group end.// */}
                     <div className="col-6">
                       <label>Password</label>

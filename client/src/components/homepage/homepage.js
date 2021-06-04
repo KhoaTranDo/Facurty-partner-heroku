@@ -13,13 +13,13 @@ class homepage extends Component {
           >
             <div className="row justify-content-center">
               <div className="col-xl-7 col-lg-9 text-center">
-                <h1>TIẾT KIỆM THỜI GIAN HƠN CHỈ VỚI VÀI THAO TÁC</h1>
-                <h2> Chúng tôi là C2SE.16</h2>
+                <h1>SAVING MORE TIME WITH JUST A FEW ACTIONS</h1>
+                <h2> We are C2SE.16</h2>
               </div>
             </div>
             <div className="row icon-boxes">
               <div
-                className="col-md-5 col-lg-4 d-flex align-items-stretch m-md-auto pb-sm-3 "
+                className="col-md-5 col-lg-4 d-flex align-items-stretch m-md-auto mb-3 pb-sm-3 "
                 data-aos="zoom-in"
                 data-aos-delay={200}
               >
@@ -28,12 +28,12 @@ class homepage extends Component {
                     <div className="icon">
                       <i className="far fa-file-alt" />
                     </div>
-                    <h4 className="title">TẠO ĐỀ</h4>
+                    <h4 className="title">Create Exams</h4>
                   </Link>
                 </div>
               </div>
               <div
-                className="col-md-5 col-lg-4 d-flex align-items-stretch m-md-auto pb-sm-3 "
+                className="col-md-5 col-lg-4 d-flex align-items-stretch m-md-auto mb-3 pb-sm-3 "
                 data-aos="zoom-in"
                 data-aos-delay={300}
               >
@@ -42,7 +42,7 @@ class homepage extends Component {
                     <div className="icon">
                       <i className="fas fa-check-circle" />
                     </div>
-                    <h4 className="title">CHẤM ĐIỂM</h4>
+                    <h4 className="title">Grading</h4>
                   </Link>
                 </div>
               </div>
@@ -65,7 +65,7 @@ class homepage extends Component {
               </div>
               <div className="col-md-4 " data-aos="fade-left">
                 <div className="section-title">
-                  <h2>Tạo đề</h2>
+                  <h2>Create exams</h2>
                 </div>
                 <p className="d-flex justify-content-center"></p>
                 <p className="d-flex justify-content-center">
@@ -81,7 +81,7 @@ class homepage extends Component {
               <div className="col-md-2 " />
               <div className="col-md-4 " data-aos="fade-right">
                 <div className="section-title">
-                  <h2>Chấm điểm</h2>
+                  <h2>Grading</h2>
                 </div>
                 <p className="d-flex justify-content-center">
                   Giúp giảng viên có thể chấm điểm các bài kiểm tra đã tạo trên

@@ -22,10 +22,18 @@ class Grading extends Component {
   }
   componentWillMount = async () => {
     if (this.props.location.state) {
-      await this.setState({
-        data: this.props.location.state.data,
+      await axios
+      .get(
+        `/exam/${this.props.location.state.data['slug']}`
+      )
+      .then( (res) => {
+       this.setState({
+        data: res.data,
       });
+      })
+      .catch((err) => console.log(err));
     }
+    ///getdata/:slug
   };
   // componentDidMount = async () => {
   //   if (this.props.location.state) {
@@ -123,7 +131,7 @@ class Grading extends Component {
             slug: this.state.data["slug"],
           };
           let getdata = await axios.post(
-            `/exam/grading/exam`,
+            `http://localhost:5000/exam/grading/exam`,
             sendData
           );
           if (getdata) {
@@ -155,7 +163,7 @@ class Grading extends Component {
     };
     if (sendData) {
       let getdata = await axios.post(
-        `/exam/grading/exam/save`,
+        `http://localhost:5000/exam/grading/exam/save`,
         sendData
       );
       if (getdata) {
@@ -164,6 +172,13 @@ class Grading extends Component {
         console.log("error");
       }
     }
+
+    this.setState({
+      nameStudent:"",
+      image: "",
+      scope: "",
+      loading:'load'
+    })
   };
 
   loadding = () => {
@@ -225,6 +240,7 @@ class Grading extends Component {
                   <button
                     type="button"
                     className="btn btn-primary"
+                    data-dismiss="modal"
                     onClick={this.SaveData}
                   >
                     Save changes
@@ -259,7 +275,7 @@ class Grading extends Component {
   };
 
   render() {
-    if (this.state.data) {
+    if (this.props.location.state) {
       let titles = this.state.data.titles;
       return (
         <div>
@@ -270,18 +286,18 @@ class Grading extends Component {
           <div className="container">
             <div className="row mb-5">
               <div className="col-lg-8 mx-auto">
-                <div className="bg-white p-sm-0 p-md-5 rounded shadow">
+                <div className="bg-white p-sm-0 p-sm-3 p-md-5 rounded shadow">
                   <div className="container">
                     <div className="row justify-content-center">
                       <div className="col-xl-10">
                         <div className="row">
-                          <div className="col-md-12">
+                          <div className="col-md-6 col-sm-12">
                             <label>
                               <b>Title:</b>
                             </label>
                             <h5>{titles}</h5>
                           </div>
-                          <div className="col-md-12">
+                          <div className="col-md-6 p-sm-3  col-sm-12">
                             <Link
                               to={{
                                 pathname: `/areaexam/${this.state.data["slug"]}`,
@@ -292,7 +308,7 @@ class Grading extends Component {
                             >
                               <button
                                 type="button"
-                                className="btn btn-outline-success float-xl-right"
+                                className="btn btn-primary float-xl-right"
                               >
                                 Download exams
                               </button>
@@ -328,6 +344,7 @@ class Grading extends Component {
                               maxLength="50"
                               name="nameStudent"
                               onChange={this.HandleChanger}
+                              value={this.state.nameStudent}
                             />
                           </div>{" "}
                           <div className="custom-file col-11 m-auto form-group">

@@ -50,6 +50,7 @@ const upload = multer({ storage });
 router.post("/grading",ExamController.gradingexam)
 router.post("/grading/exam",ExamController.gradingtest)
 router.post("/grading/exam/save",ExamController.saveResult)
+router.post("/grading/exam/delete",ExamController.deleteResult)
 router.get("/getdata/:slug", ExamController.importSlug);
 router.post("/import/mixquestion", ExamController.readmixExam);
 router.post("/import/edit/:slug", ExamController.editexam);

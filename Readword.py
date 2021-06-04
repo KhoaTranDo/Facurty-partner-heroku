@@ -47,7 +47,7 @@ checkimage={}
 def TimCauHoi(a):
     cauhoi = a.text
     # Nhận câu hỏi và đáp án theo ký tự
-    words=['###']
+    words=['^-^']
     words1 = ['A', 'B', 'C', 'D', 'E', 'F','a','b','c','d','e','f']
     words11 = []
     # Xử lý ký tự đầu đáp án
@@ -56,29 +56,32 @@ def TimCauHoi(a):
         words11.append(i + '/')
         words11.append(i + '.')
     # XXử lý ký tự đầu câu hỏi
-    for i in range(0,100):
+    for i in range(200,-1,-1):
         words.append(str(i)+')')
         words.append('Câu' + str(i))
         words.append('Câu ' + str(i))
         words.append(str(i) + '/')
         words.append(str(i) + '.')
-     # Xử lý dòng văn bản chuyển sang ký tự đặt biệt để nhận biết câu hỏi và đáp án
+    # Xử lý dòng văn bản chuyển sang ký tự đặt biệt để nhận biết câu hỏi và đáp án
     # For tìm câu hỏi
     for word in words:
        #  For tìm đáp án
        for worda in words11:
             # Kiểm tra có phải là câu hỏi không
-            if word in cauhoi:
-                cauhoi = cauhoi.replace(word, '^-^')
+            if word in cauhoi[:7].strip():
+                cauhoi = cauhoi[:7].replace(word, '^-^',2)+cauhoi[7:]
                 a.text=cauhoi
             # Kiểm tra có phải là đáp án không
-            if worda in cauhoi[:4]:
+            if worda in cauhoi[:7].strip():
                 for run in a.runs:
                     if run.bold:
-                        cauhoi = cauhoi.replace(worda, '$$-')
+                        cauhoi = cauhoi[:7].replace(worda, '$$$-',1)+cauhoi[7:]
+                        break
                     else:
-                        cauhoi = cauhoi.replace(worda, '/-/')
+                        cauhoi = cauhoi[:7].replace(worda, '/-/',1)+cauhoi[7:]
+                        break
                 a.text = cauhoi
+
     return (a.text)
 
 
@@ -111,12 +114,10 @@ def hasImage(par):
 
 
 for a in all_text:
-
     if ("^-^") in TimCauHoi(a):
         if answerthamthoi !=[]:
             luutamthoi["Answer"] = answerthamthoi
             luutamthoi["Trueanswer"] = trueanswer
-            luutamthoi["image"] = luuanh
             exams.append(luutamthoi)
             luuanh=[]
             luutamthoi={}
@@ -125,17 +126,16 @@ for a in all_text:
             index = index + 1
         cauhoi = TimCauHoi(a).replace('^-^', '').strip()
         luutamthoi['Question'] = cauhoi
-    if ("/-/"or"$$-") in TimCauHoi(a):
+    if ("/-/"or"$$$-") in TimCauHoi(a):
         dapan=TimCauHoi(a).replace('/-/','').strip()
         answerthamthoi.append(dapan)
-    if "$$-" in TimCauHoi(a):
-        dapandung = TimCauHoi(a).replace('$$-', '').strip()
+    if "$$$-" in TimCauHoi(a):
+        dapandung = TimCauHoi(a).replace('$$$-', '').strip()
         answerthamthoi.append(dapandung)
         trueanswer.append(dapandung)
     if "#End" in TimCauHoi(a):
         luutamthoi["Answer"] = answerthamthoi
         luutamthoi["Trueanswer"] = trueanswer
-        luutamthoi["image"] = luuanh
         exams.append(luutamthoi)
         break
     if hasImage(a) != []:

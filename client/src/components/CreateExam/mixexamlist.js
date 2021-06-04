@@ -11,7 +11,7 @@ class Listexam extends Component {
 
   componentDidMount=()=>{
     axios
-    .get(`/exam/${this.props.rawquestion["slug"]}`)
+    .get(`http://localhost:5000/exam/${this.props.rawquestion["slug"]}`)
     .then(async (res) => {
       // Lay data đề đã xử lý
      await this.setState({data:res.data});
@@ -23,7 +23,7 @@ class Listexam extends Component {
       idexam:idexam,
     }
     axios
-    .post(`/exam/import/edit/${this.props.rawquestion["slug"]}`,dataSend)
+    .post(`http://localhost:5000/exam/import/edit/${this.props.rawquestion["slug"]}`,dataSend)
     .then((res) => {
       // Lấy data đã cập nhật dữ liệu 
       this.props.chagedata(res.data)
@@ -32,7 +32,6 @@ class Listexam extends Component {
 
   }
   Rendermixexam = () => {
-    console.log(this.props.rawquestion)
     let data = this.props.rawquestion["exammixed"];
     if (this.props.rawquestion["exammixed"])
       return Object.keys(data).map((value, index) => {
@@ -49,7 +48,7 @@ class Listexam extends Component {
                   aria-expanded="false"
                   aria-controls={"#collapse" + index.toString()}
                 >
-                  <h3>Đề {data[value]["idexam"]}</h3>
+                  <h3>Code {data[value]["idexam"]}</h3>
                 </div>
 
                 <button
@@ -57,7 +56,7 @@ class Listexam extends Component {
                   className="btn btn-outline-danger  ml-1 float-xl-right"
                   onClick={()=>this.recreateexam(data[value]["idexam"])}
                 >
-                  Tạo lại
+                  Re-create
                 </button>
                 <Link
                   to={{
@@ -72,7 +71,7 @@ class Listexam extends Component {
                     type="button"
                     className="btn btn-outline-success float-xl-right"
                   >
-                    Tải xuống
+                    Download
                   </button>
                 </Link>
               </h2>

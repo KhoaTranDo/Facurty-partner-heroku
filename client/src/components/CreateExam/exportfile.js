@@ -91,7 +91,7 @@ class Exportdocx extends Component {
                   },
                 }),
                 new TextRun({
-                  text: `${this.state.data["idexam"]}`,
+                  text: `Code: ${this.state.data["idexam"]}`,
                   bold: true,
                   size: "18pt",
                   color: "000000",
@@ -140,14 +140,87 @@ class Exportdocx extends Component {
         },
       ],
     });
+
+    const trueAnswer=new Document({
+         // Nội dung file docx
+      sections: [
+        {
+          // Header
+          headers: {
+            //   Noi dung header
+            default: new Header({
+              children: [new Paragraph("Facuty Partner")],
+            }),
+          },
+          //   Nôi dung chính
+          children: [
+            //   Phần hiển thị QR code và mã đề
+            new Paragraph({
+              children: [
+                new ImageRun({
+                  data: Uint8Array.from(atob(this.state.imageBase64Data), (c) =>
+                    c.charCodeAt(0)
+                  ),
+                  transformation: {
+                    width: 50,
+                    height: 50,
+                  },
+                  floating: {
+                    horizontalPosition: {
+                      offset: 1014400,
+                    },
+                    verticalPosition: {
+                      offset: 1014400,
+                    },
+                  },
+                }),
+                new TextRun({
+                  text: `${this.state.data["idexam"]}`,
+                  bold: true,
+                  size: "18pt",
+                  color: "000000",
+                }),
+              ],
+              alignment: AlignmentType.RIGHT,
+            }),
+           
+             // Phần hiển thị tiêu đề
+             new Paragraph({
+              children: [
+                new TextRun({
+                  text: `True answer exams code ${this.state.data["idexam"]}`,
+                  bold: true,
+                  size: "18pt",
+                  color: "000000",
+                }),
+              ],
+              heading: HeadingLevel.HEADING_2,
+              alignment: AlignmentType.CENTER,
+            }),
+             // Cách dòng
+            new Paragraph({}),
+            new Paragraph({}),
+            new Paragraph({}),
+            // Render dữ liều câu hỏi và đáp án
+            ...this.TrueAnsertList(this.state.data).map((index) => {
+              return index;
+            }),
+          ],
+        },
+      ],
+    })
     //Xử lý xuất file word
-    this.DownloadFile(doc);
+    this.DownloadFile(doc,trueAnswer,this.state.data["idexam"]);
   };
 
-  DownloadFile = (doc) => {
+  DownloadFile = (doc,trueAnswer,id) => {
     //Xử lý xuất file word
     Packer.toBlob(doc).then((blob) => {
-      saveAs(blob, "example.docx");
+      saveAs(blob, `exam${id}.docx`);
+      console.log("Document created successfully");
+    });
+    Packer.toBlob(trueAnswer).then((blob) => {
+      saveAs(blob, `Trueanswer${id}.docx`);
       console.log("Document created successfully");
     });
     // saveAs("./50Cau.docx","answersheet.docx")
@@ -161,7 +234,26 @@ class Exportdocx extends Component {
     });
     return count;
   };
-
+  TrueAnsertList(data) {
+    let listanswer = data["listanswer"];
+    var arrData = [];
+    const Correct=['A','B','C','D','E','F','G','H','I']
+    //Nhận câu hỏi
+    arrData.push(
+      new Paragraph({
+        children: [
+            ...listanswer.map((value, index) => {
+              return new TextRun({ text: `${index + 1}:${value===-3 || value==='N/A'?'N/A':Correct[value]};  `, size: "14pt"})
+          })
+          ],
+          spacing: {
+            after: 100,
+            before: 100,
+          },
+        })
+      );
+    return arrData;
+  }
   //Xuất câu hỏi và đáp án
   CreateExam(data) {
     let question = data["questions"];
@@ -266,7 +358,7 @@ class Exportdocx extends Component {
               color="transparent"
               // target="_blank"
               className="btn btn-success float-right"
-            >Download Answer sheet</a>
+            >Get answer sheet file</a>
           </div>
           <div className="col-md-2 col-sm-5">
             <button
@@ -274,7 +366,7 @@ class Exportdocx extends Component {
               className="btn btn-success float-right"
               onClick={this.generate}
             >
-              Tải về
+              Download exam
             </button>
           </div>
         </div>

@@ -161,16 +161,20 @@ for key in result:
     countSolid = sum(r[0] > -1 for r in result[key])
     resultInvalidate[key] = countSolid == 1
 
-ab=sys.argv[1]
+ab=sys.argv[1].split(',')
 num=[]
 
 
-# for x in range(50-len(ab)):
-#     ab.append("N/A")
-# for x in range(len(ab)):
-#     num.append(str(x))
 
-# trueanswer=dict(zip(num,ab))
+for x in range(50-len(ab)):
+    ab.append(-3)
+for x in range(len(ab)):
+    num.append(str(x))
+ac=[]
+for i in range(len(ab)):
+    t = int(ab[i])
+    ac.append(t)
+trueanswer=dict(zip(num,ac))
 
 
 # tính kết quả
@@ -185,7 +189,7 @@ ANSWER_KEY = {'0': 0, '1': 3, '2': 0, '3': 0, '4': 0, '5': 0, '6': 0, '7': 0, '8
 
 correctCount = 0
 for key in result:
-    if ANSWER_KEY[key]!="N/A":
+    if ANSWER_KEY[key]!=-3:
         ansIndex = ANSWER_KEY[key]
         correctCnt = result[key][ansIndex][1]
         # print(len(ANSWER_KEY))

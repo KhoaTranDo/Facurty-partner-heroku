@@ -186,11 +186,11 @@ class Exam {
             if (result) {
               Examschema.findOne({ slug: result["slug"] }, (err, result1) => {
                 if (err) console.log(err);
-                return res.status(200).json({ data: result1, msg: "sucess" });
+                return res.status(200).json({ data: result1, msg: " Update exams sucess" });
               });
             } else {
               dataexam.save().then((result) => {
-                return res.status(200).json({ data: result, msg: "sucess" });
+                return res.status(200).json({ data: result, msg: "Add new exams sucess" });
               });
             }
           }
@@ -206,7 +206,7 @@ class Exam {
     if (url.length === 0) res.send("Empty Data!");
     qr.toDataURL(url, (err, src) => {
       if (err) res.send("Error occured");
-      res.send(JSON.stringify(src));
+      res.status(200).send(JSON.stringify(src));
     });
   }
   // Quet qr để mở bài kiểm tra
@@ -221,16 +221,13 @@ class Exam {
           }
           if (res1) {
             // Send JWT
-            console.log(res1);
             res.send({ data: result });
           } else {
-            // response is OutgoingMessage object that server response http request
-            // return response.json({success: false, message: 'passwords do not match'});
-            res.send({ error: "not match" });
+            res.status(200).send({ error: "Wrong password" });
           }
         });
       } else {
-        res.send({ error: "Khong co data" });
+        res.status(201).send({ error: "No have any data" });
       }
     });
   }
@@ -269,14 +266,14 @@ class Exam {
             })
             .on("close", () => {
               if (!dataraw) {
-                return res.status("import file error");
+                return res.status(200).send("import file error");
               } else {
-                console.log(dataraw)
                 return res.status(200).send(dataraw);
               }
             });
           process.stderr.on("data", function (err) {
-            return res.status(404).json(err.toString("utf-8"));
+            console.log(err.toString("utf-8"))
+            return res.status(203).json(err.toString("utf-8"));
           });
         } else {
           res.json({ error: "No have any data" });
@@ -332,6 +329,45 @@ saveResult(req, res) {
       });
     }
   }
+  deleteResult= async(req,res)=>{
+    let {indexImage,data,slug}=req.body
+    data['grading'].splice(indexImage,1)
+   
+    try {
+      Examschema.findOne({ slug: slug }, (err, result) => {
+        if (err) console.log(err);
+        let dataraw = result;
+        if (dataraw["exammixed"].findIndex((x) => x.idexam === data['idexam']) < 0) {
+          console.log("khong co");
+        } else {
+          let index = dataraw["exammixed"].findIndex((x) => x.idexam === data['idexam']);
+          dataraw["exammixed"][index].grading.splice(indexImage,1);
+          Examschema.updateOne(
+            { slug: slug },
+            {
+              exammixed:  dataraw["exammixed"],
+            },
+            function (err, result) {
+              if (err) {
+                console.log(err);
+              } else {
+                Examschema.findOne({ slug: slug }, (err, result1) => {
+                  if (err) console.log(err);
+                  return res.status(200).json(result1);
+                });
+                // res.send(data);
+              }
+            }
+          )
+        }
+      });
+    } catch (err) {
+      res.json({
+        result: false,
+        message: err,
+      });
+    }
+  } 
   // Tìm bộ bài kiểm tra
   importSlug(req, res) {
     try {
@@ -432,7 +468,7 @@ function Letmixquestion(datasourse, sode, checkQs, checkAs, quanlityQs) {
               }
             });
           } else {
-            listarray.push("N/A");
+            listarray.push(-3);
           }
           data1["listanswer"] = listarray;
           data1["grading"] = [];
@@ -460,7 +496,7 @@ function Letmixquestion(datasourse, sode, checkQs, checkAs, quanlityQs) {
             });
           } else {
             console.log(value.Trueanswer);
-            listarray.push("N/A");
+            listarray.push(-3);
           }
           data1["listanswer"] = listarray;
           data1["grading"] = [];
@@ -494,7 +530,7 @@ function Letmixquestion(datasourse, sode, checkQs, checkAs, quanlityQs) {
             });
           } else {
             console.log(value.Trueanswer);
-            listarray.push("N/A");
+            listarray.push(-3);
           }
           data1["listanswer"] = listarray;
           data1["grading"] = [];
@@ -522,7 +558,7 @@ function Letmixquestion(datasourse, sode, checkQs, checkAs, quanlityQs) {
             });
           } else {
             console.log(value.Trueanswer);
-            listarray.push("N/A");
+            listarray.push(-3);
           }
           data1["listanswer"] = listarray;
           data1["grading"] = [];
