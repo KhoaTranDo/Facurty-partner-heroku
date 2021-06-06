@@ -24,7 +24,7 @@ class Grading extends Component {
     if (this.props.location.state) {
       await axios
       .get(
-        `/exam/${this.props.location.state.data['slug']}`
+        `http://localhost:5000/exam/${this.props.location.state.data['slug']}`
       )
       .then( (res) => {
        this.setState({
@@ -84,7 +84,7 @@ class Grading extends Component {
         } else {
           check = false;
           let geterror = this.state.error;
-          geterror["image"] = "File đẩy lên không phải hình ảnh";
+          geterror["image"] = "File is not a image";
           this.setState({
             error: geterror,
           });
@@ -92,7 +92,7 @@ class Grading extends Component {
       } else {
         check = false;
         let geterror = this.state.error;
-        geterror["image"] = "Anh vượt quá 1mb";
+        geterror["image"] = "Image up to 5mb";
         this.setState({
           error: geterror,
         });
@@ -119,6 +119,7 @@ class Grading extends Component {
       if (this.state.data["slug"]) {
         let geterror = this.state.error;
         geterror["image"] = "";
+        geterror["information"] = "";
         if (this.state.idexam) {
           this.setState({
             loading: "loadding",
@@ -146,10 +147,25 @@ class Grading extends Component {
             console.log("error");
           }
         } else {
+          let geterror = this.state.error;
+          geterror["information"] = "please select code exams";
+          this.setState({
+            error: geterror,
+          });
         }
       } else {
+        let geterror = this.state.error;
+        geterror["information"] = "Scan QR Error";
+        this.setState({
+          error: geterror,
+        });
       }
     } else {
+      let geterror = this.state.error;
+        geterror["information"] = "Please import image exam";
+        this.setState({
+          error: geterror,
+        });
     }
   };
   // Lưu ảnh lại
@@ -385,8 +401,8 @@ class Grading extends Component {
                         </div>
                         {/* form-group// */}
                         <div className="col-12 m-auto">
-                          <p style={{ color: "red" }}>
-                            {this.state.error["image"]}
+                          <p style={{ color: "red", textAlign:'center' }}>
+                            {this.state.error["information"]}
                           </p>
                           <button
                             type="submit"

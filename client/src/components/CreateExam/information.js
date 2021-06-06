@@ -31,12 +31,10 @@ class Informationexam extends Component {
   //Import file docx function
   // On file select (from the pop up) check word
   onFileChange = async (event) => {
-    // Update the state 
-    const type=['docx']
+    // Update the state
+    const type = ["docx"];
     const check1 = event.target.files[0].name.split(".");
-    if (
-      type.includes(check1[1])
-    ) {
+    if (type.includes(check1[1])) {
       await this.setState({
         selectedFile: event.target.files[0],
         fileName: event.target.files[0].name,
@@ -48,21 +46,25 @@ class Informationexam extends Component {
       this.setState({ error: subError });
     }
   };
-
+// Render error import document
   RenderError = () => {
     let renderError = this.state.error;
     if (Object.keys(renderError).length > 0) {
       return <p style={{ color: "red" }}>{renderError["fomat"]}</p>;
     }
   };
-
+// Render error import information
   RenderError2 = () => {
     let renderError = this.state.error;
     if (Object.keys(renderError).length > 0) {
-      return <p style={{ color: "red" }}>{renderError["information"]}</p>;
+      return (
+        <p style={{ color: "red", margin: "auto", padding: "10px 0px" }}>
+          {renderError["information"]}
+        </p>
+      );
     }
   };
-
+// Render rawdata
   renderRawdata = async (event) => {
     event.preventDefault();
 
@@ -80,16 +82,18 @@ class Informationexam extends Component {
 
       let datade = { load: "load" };
       this.props.dataexam(datade);
-      setTimeout(()=>{  let datade = {err:'error' };
-      this.props.dataexam(datade) }, 7000);
+      setTimeout(() => {
+        let datade = { err: "error" };
+        this.props.dataexam(datade);
+      }, 15000);
       const data = await axios.post(
         `http://localhost:5000/exam/import`,
         formData
       );
       if (data) {
         this.setState({
-          idExam:data.data["slug"]
-        })
+          idExam: data.data["slug"],
+        });
         if (
           this.state.quanlityQs > 0 &&
           this.state.quanlityQs > data.data["rawquestions"].length
@@ -126,7 +130,6 @@ class Informationexam extends Component {
       subError["fomat"] = "Please import file docx";
       this.setState({ error: subError });
     }
-
   };
   // _____________________________________________
   SubmitData = async (e) => {
@@ -166,8 +169,8 @@ class Informationexam extends Component {
                 // Bao Loi
                 validationSubmit = false;
                 let errorss = this.state.error;
-              errorss["information"] = "quanlity question is empty";
-              this.setState({ error: errorss });
+                errorss["information"] = "quanlity question is empty";
+                this.setState({ error: errorss });
               } else {
                 let errorss = this.state.error;
                 errorss["information"] = "";
@@ -179,7 +182,7 @@ class Informationexam extends Component {
                   this.setState({ error: errorss });
                   validationSubmit = false;
                 } else {
-                  validationSubmit=true
+                  validationSubmit = true;
                 }
               }
             }
@@ -351,7 +354,7 @@ class Informationexam extends Component {
                           </div>{" "}
                           {/* form-group end.// */}
                           <div className="col form-group">
-                            <label>description</label>
+                            <label>Description</label>
                             <input
                               type="text"
                               className="form-control"

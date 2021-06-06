@@ -286,8 +286,13 @@ class Exam {
     }
   }
 
-saveResult(req, res) {
+saveResult =async (req, res)=> {
     let { nameStudent, image, idexam, slug, scope } = req.body;
+
+    await cloudinary.uploader.upload(image, function(result) {
+      image=result['url']
+     });
+
     let dataGrading = {
       nameStudent: nameStudent,
       truequestion: scope,
@@ -334,13 +339,15 @@ saveResult(req, res) {
     data['grading'].splice(indexImage,1)
    
     try {
-      Examschema.findOne({ slug: slug }, (err, result) => {
+      Examschema.findOne({ slug: slug }, async (err, result) => {
         if (err) console.log(err);
         let dataraw = result;
         if (dataraw["exammixed"].findIndex((x) => x.idexam === data['idexam']) < 0) {
           console.log("khong co");
         } else {
           let index = dataraw["exammixed"].findIndex((x) => x.idexam === data['idexam']);
+        //   console.log(dataraw["exammixed"][index].grading[indexImage]['image'])
+        //  await cloudinary.uploader.destroy(dataraw["exammixed"][index].grading[indexImage]['image'], function(result) { console.log(result) });
           dataraw["exammixed"][index].grading.splice(indexImage,1);
           Examschema.updateOne(
             { slug: slug },

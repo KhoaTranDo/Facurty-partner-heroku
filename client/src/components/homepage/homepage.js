@@ -13,8 +13,8 @@ class homepage extends Component {
           >
             <div className="row justify-content-center">
               <div className="col-xl-7 col-lg-9 text-center">
-                <h1>SAVING MORE TIME WITH JUST A FEW ACTIONS</h1>
-                <h2> We are C2SE.16</h2>
+                <h1>Welcome to Faculty Partner</h1>
+                <h2>The application saves you time and effort for creating tests and grading</h2>
               </div>
             </div>
             <div className="row icon-boxes">
@@ -67,10 +67,11 @@ class homepage extends Component {
                 <div className="section-title">
                   <h2>Create exams</h2>
                 </div>
-                <p className="d-flex justify-content-center"></p>
+                <p className="d-flex justify-content-center">Are you tired of wasting time creating lots of test code to ensure the quality of your tests?</p>
                 <p className="d-flex justify-content-center">
-                  Giúp giảng viên có thể tạo ra các bài kiểm tra trắc nghiệm dựa
-                  trên ngân hàng câu hỏi dưới dạng file word
+                Do not worried!!!!
+                Your problem has been solved by Create the Exam quickly and conveniently
+                Saves you time and effort.
                 </p>
                 <p />
               </div>
@@ -84,8 +85,8 @@ class homepage extends Component {
                   <h2>Grading</h2>
                 </div>
                 <p className="d-flex justify-content-center">
-                  Giúp giảng viên có thể chấm điểm các bài kiểm tra đã tạo trên
-                  website Farcurty Partne thông qua hình ảnh
+                You spend too much time grading the test.
+                So, let me solve your problem:
                 </p>
               </div>
               <div className="col-md-4 ">

@@ -1,6 +1,6 @@
 import { Component } from "react";
 import Captune from "./CaptureQR";
-import axios from "axios"
+import axios from "axios";
 class Maingrading extends Component {
   constructor(props) {
     super(props);
@@ -24,7 +24,7 @@ class Maingrading extends Component {
   };
   Summitdata = (e) => {
     const { redirect, idexam, password } = this.state;
-    let slug=""
+    let slug = "";
     let check = false;
     if (idexam) {
       this.setState({
@@ -34,41 +34,41 @@ class Maingrading extends Component {
         this.setState({
           errorNotice: "",
           slug: "loading",
-           //  redirect:true
+          //  redirect:true
         });
         // Lay du lieu
-        let data={
-          "idexam":this.state.idexam,
-          "password":this.state.password
-        }
-       
-        axios.post(
-          `http://localhost:5000/exam/grading`,
-          data
-        )
-        .then(async(result)=>{
-          if(result.data.error){
-            console.log(result.data.error)
-            this.setState({
-              errorNotice: result.data.error,
-              slug: "",
-            });
-          }else{
-            slug=result.data.data.slug
-            check=true
-           await this.setState({
-              errorNotice: "",
-              slug:result.data.data.slug,
-              redirect:true
-            });
-            if (check === true) {
-              console.log(this.state.slug)
-              //  this.props.history.push(`/grading/${slug}`);
-                this.props.history.push({pathname:`/grading/${slug}`,state:{data:result.data.data}
+        let data = {
+          idexam: this.state.idexam,
+          password: this.state.password,
+        };
+
+        axios
+          .post(`http://localhost:5000/exam/grading`, data)
+          .then(async (result) => {
+            if (result.data.error) {
+              console.log(result.data.error);
+              this.setState({
+                errorNotice: result.data.error,
+                slug: "",
               });
+            } else {
+              slug = result.data.data.slug;
+              check = true;
+              await this.setState({
+                errorNotice: "",
+                slug: result.data.data.slug,
+                redirect: true,
+              });
+              if (check === true) {
+                console.log(this.state.slug);
+                //  this.props.history.push(`/grading/${slug}`);
+                this.props.history.push({
+                  pathname: `/grading/${slug}`,
+                  state: { data: result.data.data },
+                });
+              }
             }
-          }
-        })
+          });
         // if (password === "aa") {
         //   // Neu có xuat data
         //   //Khong thi bao loi
@@ -91,7 +91,6 @@ class Maingrading extends Component {
       });
       check = false;
     }
-   
   };
   loadding = () => {
     if (this.state.slug === "loading") {
@@ -115,7 +114,7 @@ class Maingrading extends Component {
                   <hr className="border-bottom" />
                   <Captune data={this.setIdexam} />
                   <div className="row ">
-                    <div className="col-6  pb-5 ">
+                    <div className="col-6  pb-3 ">
                       <label>ID exams</label>
                       <input
                         type="text"
@@ -148,7 +147,9 @@ class Maingrading extends Component {
                     </div>
                   </div>
                   <div className="row m-auto" width="100%">
-                    <p style={{ color: "red" }}>{this.state.errorNotice}</p>
+                    <div className="m-auto">
+                      <p style={{ color: "red" }}>{this.state.errorNotice}</p>
+                    </div>
                   </div>
                   {/* form-group// */}
                 </div>
