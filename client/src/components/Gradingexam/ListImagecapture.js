@@ -20,7 +20,7 @@ class ListImage extends Component {
       data:data,
       slug:this.props.data['slug']
     }
-   let getdata= await axios.post(`http://localhost:5000/exam/grading/exam/delete`,dataSend)
+   let getdata= await axios.post(`/exam/grading/exam/delete`,dataSend)
    if (getdata) {
     this.props.setdata(getdata.data);
   } else {

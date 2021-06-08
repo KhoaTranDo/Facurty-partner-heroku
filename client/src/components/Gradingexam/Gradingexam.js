@@ -24,7 +24,7 @@ class Grading extends Component {
     if (this.props.location.state) {
       await axios
       .get(
-        `http://localhost:5000/exam/${this.props.location.state.data['slug']}`
+        `/exam/${this.props.location.state.data['slug']}`
       )
       .then( (res) => {
        this.setState({
@@ -140,7 +140,7 @@ class Grading extends Component {
             slug: this.state.data["slug"],
           };
           let getdata = await axios.post(
-            `http://localhost:5000/exam/grading/exam`,
+            `/exam/grading/exam`,
             sendData
           );
           if (getdata) {
@@ -187,7 +187,7 @@ class Grading extends Component {
     };
     if (sendData) {
       let getdata = await axios.post(
-        `http://localhost:5000/exam/grading/exam/save`,
+        `/exam/grading/exam/save`,
         sendData
       );
       if (getdata) {

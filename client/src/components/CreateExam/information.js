@@ -83,7 +83,7 @@ class Informationexam extends Component {
       let datade = { load: "load" };
       this.props.dataexam(datade);
       const data = await axios.post(
-        `http://localhost:5000/exam/import`,
+        `/exam/import`,
         formData
       );
       if (data) {
@@ -222,7 +222,7 @@ class Informationexam extends Component {
             password: this.state.password,
           };
           let getdata = await axios.post(
-            `http://localhost:5000/exam/import/mixquestion`,
+            `/exam/import/mixquestion`,
             dataSend
           );
           if (getdata) {
