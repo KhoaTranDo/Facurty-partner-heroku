@@ -41,7 +41,7 @@ class Rawquestion extends Component {
         blockedit: "blockdiv",
         uploaddata: "edit",
       });
-      if(this.state.subdatasource.length>0){
+      if (this.state.subdatasource.length > 0) {
         // console.log(this.state.subdatasource)
         this.props.chagedata(this.state.subdatasource);
       }
@@ -56,14 +56,19 @@ class Rawquestion extends Component {
     }
   };
   deletedata = (e) => {
-    let newraw= this.props.rawquestion
-    let index=e.target.id
-    newraw["rawquestions"].splice(index,1)
+    let newraw = this.props.rawquestion;
+    let index = e.target.id;
+    newraw["rawquestions"].splice(index, 1);
     // this.props.chagedata(newraw);
-    this.props.chagedata(newraw)
+    this.props.chagedata(newraw);
     this.setState({
       subdatasource: newraw,
-    })
+    });
+  };
+
+  closeload = () => {
+    let datade = { err: "error" };
+    this.props.dataexam(datade);
   };
   Renderdata = () => {
     if (this.props.rawquestion["rawquestions"]) {
@@ -117,7 +122,6 @@ class Rawquestion extends Component {
                   className="btn btn-outline-danger  ml-1 float-right "
                   data-toggle="modal"
                   data-target={`#exampleModal${index}`}
-                  
                 >
                   Xóa
                 </button>
@@ -179,7 +183,11 @@ class Rawquestion extends Component {
   };
   loadding = () => {
     if (this.props.rawquestion["load"] === "load") {
-      return <div className="loading">Loading&#8230;</div>;
+      return (
+        <div className="loading" onDoubleClick={this.closeload}>
+          Loading&#8230;
+        </div>
+      );
     }
   };
   render() {

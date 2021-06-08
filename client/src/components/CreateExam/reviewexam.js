@@ -144,6 +144,7 @@ class Areaprint extends Component {
   };
   render() {
     return (
+      <div className="container-flush Background-review">   
       <div className="container mainreview">
         <div className="row">
           <h1 className='m-auto pt-5 pb-3'>Review exams document</h1>
@@ -153,6 +154,7 @@ class Areaprint extends Component {
         </ul>
         <div className="tab-content croll-bar">{this.Renderquestion()}</div>
       </div>
+    </div>
     );
   }
 }

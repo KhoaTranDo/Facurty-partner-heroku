@@ -31,7 +31,6 @@ const WebcamCapture = (props) => {
       e.preventDefault();
       const imageSrc = webcamRef.current.getScreenshot();
       setImgSrc(imageSrc);
-
       props.image(imageSrc);
     },
     [webcamRef, setImgSrc]

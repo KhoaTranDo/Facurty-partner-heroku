@@ -573,17 +573,25 @@ div#element >*{
     }
   }
 
-
   .blockdiv{
     pointer-events: none;
   }
-
   div.croll-bar{
-    background-color: lightblue;
+    background-color: rgba(198, 232, 243, 0.664);
     width: 100%;
     max-height:  2480 px;
     padding-bottom: 30px;
+    margin-bottom: 20px;
+    box-shadow:0 0 29px 0 rgb(18 66 101 / 30%)
   }
   div.mainreview{
     display: block;
+  
+  }
+
+  div.Background-review{
+    width: 100%;
+    position: relative;
+    background: url("../img/bg1.jpg") top center;
+    background-size: cover;
   }

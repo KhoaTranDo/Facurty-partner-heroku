@@ -45,6 +45,7 @@ class Grading extends Component {
   getnewdata = (dataraw) => {
     this.setState({
       data: dataraw,
+
     });
   };
   HandleChanger = (e) => {
@@ -99,6 +100,13 @@ class Grading extends Component {
       }
     }
   };
+  getImage=(data)=>{
+    let file={"base64":data,name:'CapImage.JPG'}
+    this.setState({
+      file:file,
+      filename:'CapImage.JPG'
+    })
+  }
   getBase64 = (file) => {
     return new Promise((resolve) => {
       let baseURL = "";
@@ -115,7 +123,7 @@ class Grading extends Component {
     });
   };
   Summitdata = async (e) => {
-    if (this.state.file) {
+    if (this.state.file || this.state.filename) {
       if (this.state.data["slug"]) {
         let geterror = this.state.error;
         geterror["image"] = "";
@@ -196,10 +204,13 @@ class Grading extends Component {
       loading:'load'
     })
   };
-
+  closeload = () => {
+    let datade = { err: "error" };
+    this.props.dataexam(datade);
+  };
   loadding = () => {
     if (this.state.loading === "loadding") {
-      return <div className="loading">Loading&#8230;</div>;
+      return <div className="loading" onDoubleClick={this.closeload}>Loading&#8230;</div>;
     }
   };
   Showimage = () => {

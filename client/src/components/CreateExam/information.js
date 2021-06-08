@@ -82,15 +82,12 @@ class Informationexam extends Component {
 
       let datade = { load: "load" };
       this.props.dataexam(datade);
-      setTimeout(() => {
-        let datade = { err: "error" };
-        this.props.dataexam(datade);
-      }, 15000);
       const data = await axios.post(
         `http://localhost:5000/exam/import`,
         formData
       );
       if (data) {
+        this.scrolldata()
         this.setState({
           idExam: data.data["slug"],
         });
@@ -131,6 +128,9 @@ class Informationexam extends Component {
       this.setState({ error: subError });
     }
   };
+  scrolldata=(e)=>{
+    window.scrollTo(0, 800);
+  }
   // _____________________________________________
   SubmitData = async (e) => {
     e.preventDefault();

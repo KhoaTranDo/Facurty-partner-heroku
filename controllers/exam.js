@@ -268,6 +268,10 @@ class Exam {
               if (!dataraw) {
                 return res.status(200).send("import file error");
               } else {
+                url=url.split('/')
+                url=url[url.length-1].split('.')
+                url=url[0]
+                cloudinary.uploader.destroy(url, function(result) { console.log(result)});
                 return res.status(200).send(dataraw);
               }
             });
@@ -345,9 +349,11 @@ saveResult =async (req, res)=> {
         if (dataraw["exammixed"].findIndex((x) => x.idexam === data['idexam']) < 0) {
           console.log("khong co");
         } else {
-          let index = dataraw["exammixed"].findIndex((x) => x.idexam === data['idexam']);
-        //   console.log(dataraw["exammixed"][index].grading[indexImage]['image'])
-        //  await cloudinary.uploader.destroy(dataraw["exammixed"][index].grading[indexImage]['image'], function(result) { console.log(result) });
+        let index = dataraw["exammixed"].findIndex((x) => x.idexam === data['idexam']);
+        let urldl=dataraw["exammixed"][index].grading[indexImage]['image'].split('/')
+        urldl=urldl[urldl.length-1].split('.')
+        urldl=urldl[0]
+        await cloudinary.uploader.destroy(urldl, function(result) { console.log(result) });
           dataraw["exammixed"][index].grading.splice(indexImage,1);
           Examschema.updateOne(
             { slug: slug },

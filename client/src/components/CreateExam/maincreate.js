@@ -39,6 +39,7 @@ export default class MainCreate extends Component {
                 <Rawquestion
                   rawquestion={this.state.rawdata}
                   chagedata={this.Changerawdata}
+                  dataexam={this.setData}
                 />
               </div>
             </div>
@@ -46,6 +47,7 @@ export default class MainCreate extends Component {
               <Listexam
                 rawquestion={this.state.rawdata}
                 chagedata={this.Changerawdata}
+                
               />
             </div>
           </div>
