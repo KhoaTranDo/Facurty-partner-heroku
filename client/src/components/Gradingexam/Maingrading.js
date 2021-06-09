@@ -43,7 +43,7 @@ class Maingrading extends Component {
         };
 
         axios
-          .post(`/exam/grading`, data)
+          .post(`http://localhost:5000/exam/grading`, data)
           .then(async (result) => {
             if (result.data.error) {
               console.log(result.data.error);

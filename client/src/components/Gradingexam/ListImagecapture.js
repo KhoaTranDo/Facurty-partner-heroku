@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Component } from "react";
-
+import ReactHTMLTableToExcel from "react-html-table-to-excel";
 class ListImage extends Component {
   constructor(props) {
     super(props);
@@ -15,33 +15,71 @@ class ListImage extends Component {
     });
   };
   Deleteimage = async (indexImage, data) => {
-    let dataSend={
-      indexImage:indexImage,
-      data:data,
-      slug:this.props.data['slug']
+    let dataSend = {
+      indexImage: indexImage,
+      data: data,
+      slug: this.props.data["slug"],
+    };
+    let getdata = await axios.post(
+      `http://localhost:5000/exam/grading/exam/delete`,
+      dataSend
+    );
+    if (getdata) {
+      this.props.setdata(getdata.data);
+    } else {
+      console.log("error");
     }
-   let getdata= await axios.post(`/exam/grading/exam/delete`,dataSend)
-   if (getdata) {
-    this.props.setdata(getdata.data);
-  } else {
-    console.log("error");
-  }
   };
-
+  exportExel = (listdata) => {
+    if (listdata.grading.length > 0) {
+      return (
+        <>
+          <table id="emp" className="table d-none">
+            <thead>
+              <tr>
+                <th>Name Student</th>
+                <th>Correct questions</th>
+                <th>Total questions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {" "}
+              {listdata.grading.map((value, index) => {
+                return (
+                  <tr key={index}>
+                    <td>{value.nameStudent}</td>
+                    <td>{value.truequestion}</td>
+                    <td>{listdata.questions.length}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+ 
+            <ReactHTMLTableToExcel
+              className="btn btn-info d-inline float-right col-2"
+              table="emp"
+              filename="ReportExcel"
+              sheet="Sheet"
+              buttonText="Export excel"
+            />
+     
+        </>
+      );
+    }
+  };
   renderExamlist = () => {
     if (this.props.data) {
       let dataimage = this.props.data.exammixed;
       return dataimage.map((index) => {
         return (
           <>
-            <h2 className='pl-3'>Code {index.idexam}</h2>
+            <h2 className="pl-3">Code {index.idexam}</h2>
             <div className="accordion col-12" id="accordionExample">
               <div className="card">
                 <div
                   className="card-header"
                   id="headingTwo"
-                  data-toggle="collapse"
-                  data-target={`#collapseone${index.idexam}`}
                   aria-expanded="false"
                   aria-controls="collapseTwo"
                 >
@@ -49,12 +87,15 @@ class ListImage extends Component {
                     className="btn btn-link collapsed"
                     style={{ textDecoration: "none" }}
                     type="button"
+                    data-toggle="collapse"
+                    data-target={`#collapseone${index.idexam}`}
                   >
                     <h3 className="mb-0">
-                      <i className="fas fa-photo-video noti" /> &nbsp;
-                      Grading history
+                      <i className="fas fa-photo-video noti" /> &nbsp; Grading
+                      history
                     </h3>
                   </div>
+                  {this.exportExel(index)}
                 </div>
                 <div
                   id={`collapseone${index.idexam}`}

@@ -10,10 +10,10 @@ class Rawquestion extends Component {
       uploaddata: "edit",
     };
   }
-  Handlechange = (e) => {
+  Handlechange = (e,question) => {
     let subdata = this.props.rawquestion;
     var datademo = subdata["rawquestions"].filter((obj) => {
-      return obj.Question === e.target.name;
+      return obj.Question === question;
     });
     subdata["rawquestions"].filter((obj) => {
       if (datademo[0] === obj) {
@@ -72,12 +72,12 @@ class Rawquestion extends Component {
   };
   Renderdata = () => {
     if (this.props.rawquestion["rawquestions"]) {
-      return this.props.rawquestion["rawquestions"].map((value, index) => {
+      return this.props.rawquestion["rawquestions"].map((value, index1) => {
         return (
-          <div key={index} className="col-sm-12 pt-3">
+          <div key={index1} className="col-sm-12 pt-3">
             <div className="card">
               <h5 className="card-header">
-                Question {index + 1}:{value["Question"]}
+                Question {index1 + 1}:{value["Question"]}
               </h5>
               <div className={`card-body ${this.state.blockedit}`}>
                 {value["Answer"].map((answer, index) => {
@@ -87,10 +87,10 @@ class Rawquestion extends Component {
                         <input
                           className="form-check-input"
                           type="radio"
-                          name={value["Question"]}
+                          name={value["Question"]+index1}
                           id={index}
                           checked={value["Trueanswer"].includes(answer)}
-                          onChange={this.Handlechange}
+                          onChange={(e)=>this.Handlechange(e,value["Question"])}
                           value={answer}
                         />
                         <label className="form-check-label"> {answer}</label>
@@ -102,9 +102,9 @@ class Rawquestion extends Component {
                         <input
                           className="form-check-input"
                           type="radio"
-                          name={value["Question"]}
+                          name={value["Question"]+index1}
                           id={index}
-                          onChange={this.Handlechange}
+                          onChange={(e)=>this.Handlechange(e,value["Question"])}
                           checked={value["Trueanswer"].includes(answer)}
                           value={answer}
                         />
@@ -117,18 +117,18 @@ class Rawquestion extends Component {
               <div className={`card-footer text-muted ${this.state.blockedit}`}>
                 <button
                   type="button"
-                  id={index}
+                  id={index1}
                   style={{ width: "45%" }}
                   className="btn btn-outline-danger  ml-1 float-right "
                   data-toggle="modal"
-                  data-target={`#exampleModal${index}`}
+                  data-target={`#exampleModal${index1}`}
                 >
                   Xóa
                 </button>
                 {/* {this.deleteAccept(index)} */}
                 <div
                   className="modal fade"
-                  id={`exampleModal${index}`}
+                  id={`exampleModal${index1}`}
                   tabindex="-1"
                   role="dialog"
                   aria-labelledby="exampleModalLabel"
@@ -162,11 +162,11 @@ class Rawquestion extends Component {
                         </button>
                         <button
                           type="button"
-                          id={index}
+                          id={index1}
                           className="btn btn-primary"
                           onClick={this.deletedata}
                           data-toggle="modal"
-                          data-target={`#exampleModal${index}`}
+                          data-target={`#exampleModal${index1}`}
                         >
                           Delete
                         </button>
