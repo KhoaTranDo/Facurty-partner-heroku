@@ -13,9 +13,9 @@ const cloudinary = require("cloudinary");
 var AWS = require("aws-sdk");
 
 cloudinary.config({
-  cloud_name: "caps2",
-  api_key: "293927814639645",
-  api_secret: "NhSFfU7fcQWrUZoK_JBpssz0Ny8",
+  cloud_name: "cap210d",
+  api_key: "154331611885627",
+  api_secret: "HgLm2zsXGCi0smj4RqN03lTB_VE",
 });
 
 // Call model
@@ -272,7 +272,7 @@ class Exam {
                 url=url[url.length-1].split('.')
                 url=url[0]
                 cloudinary.uploader.destroy(url, function(result) { console.log(result)});
-                return res.status(200).send(dataraw);
+                return res.status(200).send(dataraw)
               }
             });
           process.stderr.on("data", function (err) {

@@ -21,6 +21,7 @@ object_as_file_like = io.BytesIO(object_as_bytes)
 
 # Get data
 doc = docx.Document(object_as_file_like)
+# doc = docx.Document('./public/'+sys.argv[1])
 if doc.paragraphs[-1].text!="#End" :
     doc.add_paragraph("#End")
     
@@ -56,10 +57,8 @@ def TimCauHoi(a):
         words11.append(i + '/')
         words11.append(i + '.')
     # XXử lý ký tự đầu câu hỏi
-    for i in range(200,-1,-1):
+    for i in range(150,-1,-1):
         words.append(str(i)+')')
-        words.append('Câu' + str(i))
-        words.append('Câu ' + str(i))
         words.append(str(i) + '/')
         words.append(str(i) + '.')
     # Xử lý dòng văn bản chuyển sang ký tự đặt biệt để nhận biết câu hỏi và đáp án
@@ -90,27 +89,27 @@ def TimCauHoi(a):
 #     print(s.height.cm, s.width.cm, s._inline.docPr.id)
 # print(len(doc.inline_shapes))
 
-# Lấy hinh anh
-import xml.etree.ElementTree as ET
-def hasImage(par):
-    """get all of the images in a paragraph
-    :param par: a paragraph object from docx
-    :return: a list of r:embed
-    """
-    ids = []
-    root = ET.fromstring(par._p.xml)
-    namespace = {
-             'a':"http://schemas.openxmlformats.org/drawingml/2006/main", \
-             'r':"http://schemas.openxmlformats.org/officeDocument/2006/relationships", \
-             'wp':"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing"}
+# # Lấy hinh anh
+# import xml.etree.ElementTree as ET
+# def hasImage(par):
+#     """get all of the images in a paragraph
+#     :param par: a paragraph object from docx
+#     :return: a list of r:embed
+#     """
+#     ids = []
+#     root = ET.fromstring(par._p.xml)
+#     namespace = {
+#              'a':"http://schemas.openxmlformats.org/drawingml/2006/main", \
+#              'r':"http://schemas.openxmlformats.org/officeDocument/2006/relationships", \
+#              'wp':"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing"}
 
-    inlines = root.findall('.//wp:inline',namespace)
-    for inline in inlines:
-        imgs = inline.findall('.//a:blip', namespace)
-        for img in imgs:
-            id = img.attrib['{{{0}}}embed'.format(namespace['r'])]
-        ids.append(id)
-    return ids
+#     inlines = root.findall('.//wp:inline',namespace)
+#     for inline in inlines:
+#         imgs = inline.findall('.//a:blip', namespace)
+#         for img in imgs:
+#             id = img.attrib['{{{0}}}embed'.format(namespace['r'])]
+#         ids.append(id)
+#     return ids
 
 
 for a in all_text:
@@ -138,15 +137,6 @@ for a in all_text:
         luutamthoi["Trueanswer"] = trueanswer
         exams.append(luutamthoi)
         break
-    if hasImage(a) != []:
-        if hasImage(a) not in saveimage:
-            saveimage.append(hasImage(a))
-            image = 'image' + str(numimage) + '.jgeg'
-            checkimage[str(hasImage(a))]=image
-            numimage = numimage + 1
-            luuanh.append(image)
-        else:
-            luuanh.append( checkimage[str(hasImage(a))])
 
     # print(a.text)
 

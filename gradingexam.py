@@ -103,7 +103,7 @@ answerSheetThresh = crop(thresh, (150, 0, thresh.shape[1], thresh.shape[0]))
 # Tìm và đánh số thứ tự ô trả lời
 ANSWER_PER_QUESTION = 4
 ANSWER_COLUMN = 2
-QUESTION_PER_COLUMN = 20
+QUESTION_PER_COLUMN = 25
 bubbles = []
 index = 0
 cnts, hierarchy = cv2.findContours(answerSheetThresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
@@ -206,9 +206,9 @@ for key in result:
 
 
 
-text = 'Corect: {} -- Score: {}'.format(correctCount, correctCount / len(ANSWER_KEY) * 10)
-cv2.putText(answerSheet, str(text), (30, 30), cv2.FONT_HERSHEY_SIMPLEX, .7, (255, 0, 0), 2)
-jpg_img = cv2.imencode('.jpg', answerSheet)
+text = 'Corect: {} -- Name student: {}'.format(correctCount, sys.argv[3])
+cv2.putText(answerSheet, str(text), (30, 20), cv2.FONT_HERSHEY_SIMPLEX, .5, (255, 0, 0), 1)
+jpg_img = cv2.imencode('.jpg', paper)
 my_string = base64.b64encode(jpg_img[1]).decode('utf-8')
 # print(correctCount)
 # print("data:image/jpg;base64,"+my_string)

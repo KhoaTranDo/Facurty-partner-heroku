@@ -67,7 +67,7 @@ const WebcamCapture = (props) => {
         {/* form-group end.// */}
         {/* form-group end.// */}
       </div>
-      <div className="form-group m-auto col-3">
+      <div className="form-group m-auto col-5 col-sm-3">
         <button
           type="submit"
           onClick={capture}

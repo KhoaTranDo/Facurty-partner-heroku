@@ -1,6 +1,7 @@
 import axios from "axios";
 import { Component } from "react";
 import ReactHTMLTableToExcel from "react-html-table-to-excel";
+import ModalImage from "react-modal-image";
 class ListImage extends Component {
   constructor(props) {
     super(props);
@@ -21,7 +22,7 @@ class ListImage extends Component {
       slug: this.props.data["slug"],
     };
     let getdata = await axios.post(
-      `http://localhost:5000/exam/grading/exam/delete`,
+      `http://localhost:6001/exam/grading/exam/delete`,
       dataSend
     );
     if (getdata) {
@@ -57,9 +58,9 @@ class ListImage extends Component {
           </table>
  
             <ReactHTMLTableToExcel
-              className="btn btn-info d-inline float-right col-2"
+              className="btn btn-info d-inline float-right col-md-2"
               table="emp"
-              filename="ReportExcel"
+              filename={`ReportGrading-${listdata.idexam}`}
               sheet="Sheet"
               buttonText="Export excel"
             />
@@ -137,57 +138,16 @@ class ListImage extends Component {
                 </h5>
               </div>
               <div className="card-body d-flex justify-content-center">
-                <img
-                  src={values.image}
-                  style={{ width: 175, height: 300 }}
-                  alt="#asd"
-                  data-toggle="modal"
-                  data-target={`#exampleModalLong${index}`}
-                />
-                <div
-                  class="modal fade"
-                  id={`exampleModalLong${index}`}
-                  tabindex="-1"
-                  role="dialog"
-                  aria-labelledby="exampleModalLongTitle"
-                  aria-hidden="true"
-                >
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">
-                          Image
-                        </h5>
-                        <button
-                          type="button"
-                          class="close"
-                          data-dismiss="modal"
-                          aria-label="Close"
-                        >
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body m-auto">
-                        <img
-                          src={values.image}
-                          style={{ width: 400, height: 600 }}
-                          alt="#asd"
-                          data-toggle="modal"
-                          data-target={`#exampleModalLong${index}`}
-                        />
-                      </div>
-                      <div class="modal-footer">
-                        <button
-                          type="button"
-                          class="btn btn-secondary"
-                          data-dismiss="modal"
-                        >
-                          Close
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                 <ModalImage
+            small={values.image}
+            large={values.image}
+            alt={values.nameStudent}
+            hideDownload={true}
+            hideZoom={true}
+            className="modal-image"
+          />
+
+             
               </div>
               <div className="card-footer text-muted">
                 <button

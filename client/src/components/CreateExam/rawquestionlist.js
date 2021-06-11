@@ -220,7 +220,7 @@ class Rawquestion extends Component {
                 onClick={this.Handleupdate}
                 id="button"
               >
-                {this.state.uploaddata === "edit" ? "Edit" : "Change"}
+                {this.state.uploaddata === "edit" ? "Edit" : "Save"}
               </button>
             </div>
           </div>

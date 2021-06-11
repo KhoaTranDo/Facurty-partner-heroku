@@ -18,7 +18,7 @@ class Areaprint extends Component {
     
     axios
       .get(
-        `http://localhost:5000/exam/${dataraw["slug"]}`
+        `http://localhost:6001/exam/${dataraw["slug"]}`
       )
       .then((res) => {
         this.setState({

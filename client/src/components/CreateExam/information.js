@@ -83,7 +83,7 @@ class Informationexam extends Component {
       let datade = { load: "load" };
       this.props.dataexam(datade);
       const data = await axios.post(
-        `http://localhost:5000/exam/import`,
+        `http://localhost:6001/exam/import`,
         formData
       );
       if (data) {
@@ -222,7 +222,7 @@ class Informationexam extends Component {
             password: this.state.password,
           };
           let getdata = await axios.post(
-            `http://localhost:5000/exam/import/mixquestion`,
+            `http://localhost:6001/exam/import/mixquestion`,
             dataSend
           );
           if (getdata) {
@@ -456,7 +456,7 @@ class Informationexam extends Component {
                                 className="form-check-label"
                                 htmlFor="exampleCheck1"
                               >
-                                Questions swap
+                                Swap Questions
                               </label>
                             </div>
                             <div className="form-group form-check float-left  col-12">
@@ -472,7 +472,7 @@ class Informationexam extends Component {
                                 className="form-check-label"
                                 htmlFor="exampleCheck2"
                               >
-                                Answers swap
+                               Swap Answers 
                               </label>
                             </div>
                           </div>{" "}

@@ -24,7 +24,7 @@ class Grading extends Component {
     if (this.props.location.state) {
       await axios
       .get(
-        `http://localhost:5000/exam/${this.props.location.state.data['slug']}`
+        `http://localhost:6001/exam/${this.props.location.state.data['slug']}`
       )
       .then( (res) => {
        this.setState({
@@ -33,19 +33,11 @@ class Grading extends Component {
       })
       .catch((err) => console.log(err));
     }
-    ///getdata/:slug
   };
-  // componentDidMount = async () => {
-  //   if (this.props.location.state) {
-  //     await this.setState({
-  //       data: this.props.location.state.data,
-  //     });
-  //   }
-  // };
+
   getnewdata = (dataraw) => {
     this.setState({
       data: dataraw,
-
     });
   };
   HandleChanger = (e) => {
@@ -58,7 +50,7 @@ class Grading extends Component {
     const file = e.target.files;
     let check = true;
     if (file.length === 1) {
-      if (file[0].size < 1024 * 1024) {
+      if (file[0].size < 200024 * 200024) {
         const check1 = file[0].type.split("/");
         if (typeimage.includes(check1[1])) {
           let { file } = this.state;
@@ -98,12 +90,16 @@ class Grading extends Component {
           error: geterror,
         });
       }
+    }else{
+      console.log('Not support')
     }
   };
   getImage=(data)=>{
+   let letfile=[]
     let file={"base64":data,name:'CapImage.JPG'}
+    letfile.push(file)
     this.setState({
-      file:file,
+      file:letfile,
       filename:'CapImage.JPG'
     })
   }
@@ -140,7 +136,7 @@ class Grading extends Component {
             slug: this.state.data["slug"],
           };
           let getdata = await axios.post(
-            `http://localhost:5000/exam/grading/exam`,
+            `http://localhost:6001/exam/grading/exam`,
             sendData
           );
           if (getdata) {
@@ -187,7 +183,7 @@ class Grading extends Component {
     };
     if (sendData) {
       let getdata = await axios.post(
-        `http://localhost:5000/exam/grading/exam/save`,
+        `http://localhost:6001/exam/grading/exam/save`,
         sendData
       );
       if (getdata) {
@@ -254,7 +250,7 @@ class Grading extends Component {
                   <p>
                     Correct Answer {this.state.scope}/{this.state.totalqs}
                   </p>
-                  <img src={this.state.image} />
+                  <img src={this.state.image} style={{width:'100%'}} />
                 </div>
                 <div className="modal-footer">
                   <button
@@ -324,7 +320,7 @@ class Grading extends Component {
                             </label>
                             <h5>{titles}</h5>
                           </div>
-                          <div className="col-md-6 p-sm-3  col-sm-12">
+                          <div className="col-md-6 p-sm-3 mb-3 mb-sm-0  col-sm-12">
                             <Link
                               to={{
                                 pathname: `/areaexam/${this.state.data["slug"]}`,
@@ -337,7 +333,7 @@ class Grading extends Component {
                                 type="button"
                                 className="btn btn-primary float-xl-right"
                               >
-                                Download exams
+                                Export exams
                               </button>
                             </Link>
                           </div>
@@ -350,7 +346,7 @@ class Grading extends Component {
                               defaultValue=""
                               name="idexam"
                               id="idexam"
-                              onClick={this.getidexam}
+                              onChange={this.getidexam}
                             >
                               <option disabled value="">
                                 Choose exam
@@ -417,7 +413,7 @@ class Grading extends Component {
                           </p>
                           <button
                             type="submit"
-                            className="btn btn-primary btn-block"
+                            className="btn btn-primary btn-block mb-3"
                             onClick={this.Summitdata}
                           >
                             Accept
